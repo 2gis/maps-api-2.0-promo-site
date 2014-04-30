@@ -1,5 +1,9 @@
-
 @import 'reset.css';
+@import 'reset.css';
+/* Media Queries Selectors */
+/* Old Android based devices */
+/* iPhone, iPad, iPod touch with retina */
+/* Top devices */
 @font-face {
   font-family: 'SuisseCond';
   src: url('../fonts/SuisseIntl-Cond.eot');
@@ -7,10 +11,6 @@
   font-weight: normal;
   font-style: normal;
 }
-/* Media Queries Selectors */
-/* Old Android based devices */
-/* iPhone, iPad, iPod touch with retina */
-/* Top devices */
 .layout {
   position: relative;
   min-height: 100%;
