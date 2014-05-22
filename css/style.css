@@ -516,7 +516,7 @@ table {
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
-  color: #000;
+  color: #393939;
 }
 .panel_type_black {
   padding: 19px;
@@ -574,9 +574,9 @@ table {
 .features__arrow-link {
   position: absolute;
   top: 58px;
+  z-index: 1;
   color: transparent;
   font-size: 0;
-  z-index: 1;
 }
 .features__arrow-link_to_left {
   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgMTEgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDExIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxnPg0KCQk8cG9seWdvbiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI0ZGRkZGRiIgcG9pbnRzPSIxMSwxLjIgOS44LDAgMS4yLDguOCAxLjIsOC44IDAsMTAgMS4yLDExLjIgMS4yLDExLjIgDQoJCQk5LjgsMjAgMTEsMTguOCAyLjQsMTAgCQkiLz4NCgk8L2c+DQo8L2c+DQo8L3N2Zz4NCg==");
@@ -632,24 +632,23 @@ table {
 }
 .features__table-of-contents {
   overflow: hidden;
-  padding: 2px 0 1px;
   margin: -2px 0 25px 42px;
+  padding: 2px 0 1px;
 }
 .features__table-of-contents-item {
   position: relative;
-  font-size: 0;
-  color: transparent;
   float: left;
   margin: 0 0 0 12px;
   width: 7px;
   height: 7px;
+  color: transparent;
+  font-size: 0;
   cursor: pointer;
 }
 .features__table-of-contents-item:first-child {
   margin-left: 0;
 }
 .features__table-of-contents-item:before {
-  content: '';
   position: absolute;
   top: 0;
   right: 0;
@@ -657,6 +656,7 @@ table {
   left: 0;
   border-radius: 50%;
   background-color: #6e6e6e;
+  content: '';
 }
 .features__table-of-contents-item_is-active_true:before {
   top: -2px;
@@ -834,4 +834,42 @@ table {
     background: url('../img/public/sprite@3x.png') 0px -465px no-repeat transparent;
     background-size: 51px 87px;
   }
+}
+.heatmap-panel__dynamics {
+  display: table;
+  margin: 0 0 12px 0;
+  width: 370px;
+  height: 48px;
+  position: relative;
+  white-space: nowrap;
+}
+.heatmap-panel__dynamics:before {
+  content: '';
+  position: absolute;
+  height: 22px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(to right, #24bff1, #fdc854, #fd7a14, #ed4939);
+  border-radius: 3px;
+  background-size: 100% 100%;
+}
+.heatmap-panel__dynamics-item {
+  display: table-cell;
+  height: 22px;
+  text-align: center;
+}
+.heatmap-panel__dynamics-value {
+  position: relative;
+  display: block;
+  font-weight: bold;
+}
+.heatmap-panel__dynamics-value:after {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 1px;
+  height: 8px;
+  background-color: #000;
+  content: '';
 }

@@ -1,0 +1,71 @@
+@import (reference) 'sprite.less';
+@import (reference) 'sprite@1.5x.less';
+@import (reference) 'sprite@2x.less';
+@import (reference) 'sprite@3x.less';
+
+@baseImagesPath: '../img';
+@publicImagesPath: '@{baseImagesPath}/public';
+
+/* Media Queries Selectors */
+/* Old Android based devices */
+@_144dpi: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and ( min-resolution: 144dpi), only screen and ( min-resolution: 1.5dppx)";
+/* iPhone, iPad, iPod touch with retina */
+@_192dpi: ~"only screen and (-webkit-min-device-pixel-ratio: 2), only screen and ( min-resolution: 192dpi), only screen and ( min-resolution: 2dppx)";
+/* Top devices */
+@_288dpi: ~"only screen and (-webkit-min-device-pixel-ratio: 3), only screen and ( min-resolution: 288dpi), only screen and ( min-resolution: 3dppx)";
+
+.spriteImage(@name) {
+    @image: '@{sprite-@{name}-image}';
+
+    @_width: 'sprite-@{name}-width';
+    @_height: 'sprite-@{name}-height';
+    @width: @@_width;
+    @height: @@_height;
+
+    @_offset-x: 'sprite-@{name}-offset-x';
+    @_offset-y: 'sprite-@{name}-offset-y';
+    @offset-x: @@_offset-x;
+    @offset-y: @@_offset-y;
+
+    background: url('@{publicImagesPath}/@{image}') @offset-x @offset-y no-repeat transparent;
+    background-size: @width @height;
+    }
+
+.backgroundImage(@name) {
+    & when (@isIE) {
+        .spriteImage(@name);
+        }
+
+    & when not (@isIE) {
+        background-image: data-uri('@{baseImagesPath}/@{name}.svg');
+    
+        @media @_144dpi {
+            .spriteImage('@{name}15x');
+            }
+        @media @_192dpi {
+            .spriteImage('@{name}2x');
+            }
+        @media @_288dpi {
+            .spriteImage('@{name}3x');
+            }
+        }
+    }
+
+.noRepeatableBg(@name) {
+    .backgroundImage(@name);
+
+    @_width: 'sprite-@{name}-width';
+    @_height: 'sprite-@{name}-height';
+    @width: @@_width;
+    @height: @@_height;
+
+    width: @width;
+    height: @height;
+
+    background-size: @width @height;
+    background-repeat: no-repeat;
+    }
+
+.repeatableBg(@name) {
+    .backgroundImage(@name);
+    }

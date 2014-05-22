@@ -1,0 +1,27 @@
+{
+  "name": "mue",
+  "version": "0.0.1",
+  "description": "Simple environment for markupping. Includes Gulp with predefined watchers, Less as CSS preprocessor and Mustache as template engine. Also Mue can rasterize and optimize graphics.",
+  "dependencies": {
+    "gulp-concat": "~2.2.0",
+    "gulp": "~3.6.2",
+    "gulp-less": "~1.2.3",
+    "gulp-mustache": "^0.3.1",
+    "glob": "^3.2.9",
+    "gulp-raster": "0.0.2",
+    "gulp-rename": "^1.2.0",
+    "event-stream": "^3.1.4",
+    "gulp-plumber": "^0.6.1",
+    "gulp-imagemin": "^0.5.0",
+    "gulp-cache": "^0.1.3",
+    "gulp.spritesmith": "^0.5.0",
+    "gulp-util": "^2.2.14",
+    "gulp-flatten": "0.0.2",
+    "gulp-changed": "^0.3.0",
+    "png": "^3.0.3",
+    "gulp-clean": "^0.2.4"
+  },
+  "devDependencies": {},
+  "author": "Alexander Belov",
+  "license": "WTFPL"
+}

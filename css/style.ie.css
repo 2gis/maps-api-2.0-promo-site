@@ -209,7 +209,7 @@ table {
   content: '';
 }
 .intro__header:before {
-  background: url('../img/public/sprite.png') 0px -279px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -280px no-repeat transparent;
   background-size: 112px 49px;
   background-repeat: no-repeat;
   top: 0;
@@ -218,7 +218,7 @@ table {
   height: 49px;
 }
 .intro__header:after {
-  background: url('../img/public/sprite.png') 0px 0px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -1px no-repeat transparent;
   background-size: 20px 11px;
   background-repeat: no-repeat;
   top: 284px;
@@ -330,7 +330,7 @@ table {
   content: '';
 }
 .follow-us__link_name_twitter:after {
-  background: url('../img/public/sprite.png') 0px -51px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -52px no-repeat transparent;
   background-size: 27px 24px;
   background-repeat: no-repeat;
   margin: 12px 0 0 1px;
@@ -338,7 +338,7 @@ table {
   height: 24px;
 }
 .follow-us__link_name_facebook:after {
-  background: url('../img/public/sprite.png') 0px -126px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -127px no-repeat transparent;
   background-size: 15px 29px;
   background-repeat: no-repeat;
   margin: 10px 0 0 -1px;
@@ -346,7 +346,7 @@ table {
   height: 29px;
 }
 .follow-us__link_name_vk:after {
-  background: url('../img/public/sprite.png') 0px -75px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -76px no-repeat transparent;
   background-size: 18px 25px;
   background-repeat: no-repeat;
   margin: 12px 0 0 1px;
@@ -377,7 +377,7 @@ table {
   left: 55px;
 }
 .footer__2gis-logotype-dark {
-  background: url('../img/public/sprite.png') 0px -214px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -215px no-repeat transparent;
   background-size: 70px 31px;
   background-repeat: no-repeat;
   position: absolute;
@@ -408,7 +408,7 @@ table {
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.15);
-  color: #000;
+  color: #393939;
 }
 .panel_type_black {
   padding: 19px;
@@ -429,7 +429,7 @@ table {
   font: normal 14px/16px Arial, sans-serif;
 }
 .bankomats-panel__title:before {
-  background: url('../img/public/sprite.png') 0px -100px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -101px no-repeat transparent;
   width: 37px;
   height: 26px;
   background-size: 37px 26px;
@@ -448,12 +448,12 @@ table {
 .features__arrow-link {
   position: absolute;
   top: 58px;
+  z-index: 1;
   color: transparent;
   font-size: 0;
-  z-index: 1;
 }
 .features__arrow-link_to_left {
-  background: url('../img/public/sprite.png') 0px -11px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -12px no-repeat transparent;
   width: 11px;
   height: 20px;
   background-size: 11px 20px;
@@ -461,7 +461,7 @@ table {
   left: 19px;
 }
 .features__arrow-link_to_right {
-  background: url('../img/public/sprite.png') 0px -31px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -32px no-repeat transparent;
   width: 11px;
   height: 20px;
   background-size: 11px 20px;
@@ -470,24 +470,23 @@ table {
 }
 .features__table-of-contents {
   overflow: hidden;
-  padding: 2px 0 1px;
   margin: -2px 0 25px 42px;
+  padding: 2px 0 1px;
 }
 .features__table-of-contents-item {
   position: relative;
-  font-size: 0;
-  color: transparent;
   float: left;
   margin: 0 0 0 12px;
   width: 7px;
   height: 7px;
+  color: transparent;
+  font-size: 0;
   cursor: pointer;
 }
 .features__table-of-contents-item:first-child {
   margin-left: 0;
 }
 .features__table-of-contents-item:before {
-  content: '';
   position: absolute;
   top: 0;
   right: 0;
@@ -495,6 +494,7 @@ table {
   left: 0;
   border-radius: 50%;
   background-color: #6e6e6e;
+  content: '';
 }
 .features__table-of-contents-item_is-active_true:before {
   top: -2px;
@@ -596,7 +596,7 @@ table {
   box-shadow: 0 -2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 1px rgba(0, 0, 0, 0.2) inset;
 }
 .features__round-link_name_two-markers:after {
-  background: url('../img/public/sprite.png') 0px -184px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -185px no-repeat transparent;
   width: 25px;
   height: 30px;
   background-size: 25px 30px;
@@ -604,7 +604,7 @@ table {
   margin: 9px 0 0 11px;
 }
 .features__round-link_name_sun:after {
-  background: url('../img/public/sprite.png') 0px -245px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -246px no-repeat transparent;
   width: 32px;
   height: 34px;
   background-size: 32px 34px;
@@ -612,18 +612,56 @@ table {
   margin: 7px 0 0 7px;
 }
 .features__round-link_name_marker:after {
-  background: url('../img/public/sprite.png') 0px -155px no-repeat transparent;
+  background: url('../img/public/sprite.png') 0px -156px no-repeat transparent;
   width: 17px;
   height: 29px;
   background-size: 17px 29px;
   background-repeat: no-repeat;
   margin: 10px 0 0 14px;
 }
+.heatmap-panel__dynamics {
+  display: table;
+  margin: 0 0 12px 0;
+  width: 370px;
+  height: 48px;
+  position: relative;
+  white-space: nowrap;
+}
+.heatmap-panel__dynamics:before {
+  content: '';
+  position: absolute;
+  height: 22px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(to right, #24bff1, #fdc854, #fd7a14, #ed4939);
+  border-radius: 3px;
+  background-size: 100% 100%;
+}
+.heatmap-panel__dynamics-item {
+  display: table-cell;
+  height: 22px;
+  text-align: center;
+}
+.heatmap-panel__dynamics-value {
+  position: relative;
+  display: block;
+  font-weight: bold;
+}
+.heatmap-panel__dynamics-value:after {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  width: 1px;
+  height: 8px;
+  background-color: #000;
+  content: '';
+}
 .page:before {
-  background: url(about:blank) 0 0 repeat transparent;
+  background: url(iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWOwtLR0AAACRgDshvN0RAAAAABJRU5ErkJggg==) 0 0 repeat transparent;
 }
 .page_name_start:before {
-  background: url(about:blank) 0 0 repeat transparent;
+  background: url(iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWOwtLRMAwACbAES7S/AswAAAABJRU5ErkJggg==) 0 0 repeat transparent;
 }
 .follow-us__link:focus:before {
   top: 0;
@@ -636,4 +674,7 @@ table {
 }
 .panel_type_black {
   background-color: #393939;
+}
+.heatmap-panel__dynamics {
+  background: url('../img/heatmap-gradient.png') 0 0 repeat-y transparent;
 }

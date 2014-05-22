@@ -1,0 +1,11 @@
+.opacity(@value) when (isnumber(@value)) and (@value < 1) {
+    @percentValue: @value * 100;
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@{percentValue})";
+    filter: e("alpha(opacity=@{percentValue})");
+    }
+
+.rgba(@red, @green, @blue, @opacity: 1) {
+    @base64EncodedPng: ~`getBase64EncodedOnePixelPng(@{red}, @{green}, @{blue}, @{opacity})`;
+    background: url(@base64EncodedPng) 0 0 repeat transparent;
+    }

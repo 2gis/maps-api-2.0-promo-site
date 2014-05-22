@@ -1,0 +1,43 @@
+@import (once) 'mixins.less';
+@import (once) 'mixins.ie.less';
+
+@import (once,less) 'reset.css';
+@import (once) 'fonts.less';
+@import (once) 'style.less';
+
+@isIE: true;
+
+.page {
+    &:before {
+        .rgba(57, 57, 57, 0.25);
+        }
+    }
+    .page_name_start:before {
+        .rgba(57, 57, 57, 0.4);
+        }
+
+.follow-us {
+    }
+    .follow-us__link {
+        &:focus:before {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            }
+        }
+
+.panel {
+    }
+.panel_type_white {
+    background-color: #fff;
+    }
+.panel_type_black {
+    background-color: #393939;
+    }
+
+.heatmap-panel {
+    }
+    .heatmap-panel__dynamics {
+        background: url('../img/heatmap-gradient.png') 0 0 repeat-y transparent;
+        };
