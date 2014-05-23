@@ -118,7 +118,7 @@ global.getBase64EncodedOnePixelPng = (function () {
         var pngName = '' + red + green + blue + opacity;
 
         if (!(pngName in generatedPngs)) {
-            generatedPngs[pngName] = createOnePixelPng(red, green, blue, opacity).encodeSync().toString('base64');
+            generatedPngs[pngName] = 'data:image/png;base64,' + createOnePixelPng(red, green, blue, opacity).encodeSync().toString('base64');
         }
 
         return generatedPngs[pngName];
