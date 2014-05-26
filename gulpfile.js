@@ -31,6 +31,7 @@ gulp.task('watch', function () {
 
     gulp.watch('./pages/*.*', ['build-templates']);
     gulp.watch('./partials/*.*', ['build-templates']);
+    gulp.watch('./app/**/*.*', ['browserify']);
 });
 
 
@@ -49,7 +50,7 @@ gulp.task('build-images-and-less', ['build-images'], function() {
     return gulp.start('compile-less');
 });
 
-gulp.task('build', ['build-templates', 'build-images-and-less'], function () {
+gulp.task('build', ['build-templates', 'build-images-and-less', 'browserify'], function () {
     return gulp.start('export');
 });
 
@@ -64,7 +65,7 @@ gulp.task('clean-up-export', function() {
     );
 });
 
-gulp.task('export', ['clean-up-export'], function () {
+gulp.task('export', function () {
     return es.merge(
         gulp.src('./*.html')
             .pipe(gulp.dest('./build/')),
@@ -243,8 +244,20 @@ gulp.task('build-templates', function () {
 
 
 var browserify   = require('browserify');
-var gulp         = require('gulp');
-// var handleErrors = require('../util/handleErrors');
+var notify = require("gulp-notify");
+var handleErrors = function() {
+
+    var args = Array.prototype.slice.call(arguments);
+
+    // Send error to notification center with gulp-notify
+    notify.onError({
+        title: "Compile Error",
+        message: "<%= error.message %>"
+    }).apply(this, args);
+
+    // Keep gulp from hanging on this task
+    this.emit('end');
+};
 var source       = require('vinyl-source-stream');
 
 gulp.task('browserify', function(){
@@ -253,6 +266,22 @@ gulp.task('browserify', function(){
             extensions: ['.js', '.mustache']
         })
         .bundle({debug: true})
+        .on('error', handleErrors)
         .pipe(source('app.js'))
-        .pipe(gulp.dest('./build/'));
+        .pipe(gulp.dest('./build/js'));
+});
+
+var connect = require('connect');
+var http    = require('http');
+var config  = {
+    root: './build',
+    port: 8080
+};
+
+gulp.task('serve', function(){
+    var app = connect()
+        .use(connect.logger('dev'))
+        .use(connect.static(config.root));
+
+    http.createServer(app).listen(config.port);
 });
