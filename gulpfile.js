@@ -240,3 +240,19 @@ gulp.task('build-templates', function () {
             .pipe(gulp.dest('./build/'))
     );
 });
+
+
+var browserify   = require('browserify');
+var gulp         = require('gulp');
+// var handleErrors = require('../util/handleErrors');
+var source       = require('vinyl-source-stream');
+
+gulp.task('browserify', function(){
+    return browserify({
+            entries: ['./app/index.js'],
+            extensions: ['.js', '.mustache']
+        })
+        .bundle({debug: true})
+        .pipe(source('app.js'))
+        .pipe(gulp.dest('./build/'));
+});
