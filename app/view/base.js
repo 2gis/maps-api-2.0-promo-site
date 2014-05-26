@@ -9,7 +9,12 @@ module.exports = function(app) {
 		},
 
 		initialize: function() {
+			app.state.on('change:page', this.update, this);
 			this.render();
+		},
+
+		update: function() {
+			this.$('.intro')[(app.state.get('page') === 0 ? 'remove' : 'add') + 'Class']('intro__go');
 		},
 
 		start: function() {

@@ -180,6 +180,7 @@ table {
   vertical-align: middle;
   text-align: center;
   font: normal 28px/34px SuisseCond, Arial, sans-serif;
+  transition-duration: 0.3s;
 }
 .intro:before {
   position: absolute;
@@ -193,6 +194,10 @@ table {
   background-color: rgba(57, 57, 57, 0.93);
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.7);
   content: '';
+}
+.intro__go {
+  -webkit-transform: translateY(999px);
+  transform: translateY(999px);
 }
 .intro__header {
   position: relative;

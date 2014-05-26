@@ -22,6 +22,7 @@ module.exports = function (app) {
 		},
 
 		index: function () {
+			app.state.setState(0);
 			console.log('ahoy!', app.base);			
 		},
 

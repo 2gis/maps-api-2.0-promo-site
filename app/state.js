@@ -9,7 +9,7 @@ module.exports = function() {
 		},
 
 		setState: function(page) {
-			this.set('page', page);
+			this.set('page', page, {silent: true});
 		},
 
 		upState: function() {
