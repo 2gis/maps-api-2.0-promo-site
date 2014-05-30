@@ -23,6 +23,14 @@ var gulp = require('gulp'),
 
 
 /**
+ * Dev tasks
+ */
+gulp.task('dev', ['watch'], function () {
+    return gulp.start('serve');
+});
+
+
+/**
  * Watcher tasks
  */
 gulp.task('watch', ['build'], function () {
