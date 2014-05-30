@@ -7,6 +7,7 @@
   "dependencies": {
     "backbone": "^1.1.2",
     "express": "^4.3.2",
+    "hogan.js": "^2.0.0",
     "jquery": "~1.11.1",
     "morgan": "^1.1.1",
     "mustache": "^0.8.1"
