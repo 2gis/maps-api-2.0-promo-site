@@ -24,8 +24,8 @@ var gulp = require('gulp'),
 /**
  * Watcher tasks
  */
-gulp.task('watch', function () {
-    gulp.watch('./less/**/*.*', ['compile-less']);
+gulp.task('watch', ['build'], function () {
+    gulp.watch('./styles/**/*.*', ['compile-less']);
 
     gulp.watch('./img/**/*.*', ['build-images']);
 
@@ -50,15 +50,7 @@ gulp.task('build-images-and-less', ['build-images'], function() {
     return gulp.start('compile-less');
 });
 
-gulp.task('build', ['build-templates', 'build-images-and-less', 'browserify'], function () {
-    return gulp.start('export');
-});
-
-
-/**
- * Export task
- */
-gulp.task('clean-up-export', function() {
+gulp.task('clean-up-build', function() {
     return (
         gulp.src(['./build/**/**.*', '!./build/.git'], { read: false })
             .pipe(clean())
@@ -67,10 +59,7 @@ gulp.task('clean-up-export', function() {
 
 gulp.task('export', function () {
     return es.merge(
-        gulp.src('./*.html')
-            .pipe(gulp.dest('./build/')),
-
-        gulp.src('./css/**/*.css')
+        gulp.src('./styles/**/*.css')
             .pipe(gulp.dest('./build/css/')),
 
         gulp.src('./img/**/*.{png,gif,jpg,jpeg}')
@@ -82,6 +71,10 @@ gulp.task('export', function () {
         gulp.src('./js/**/*.{js,json}')
             .pipe(gulp.dest('./build/js/'))
     );
+});
+
+gulp.task('build', ['build-templates', 'build-images-and-less', 'browserify'], function () {
+    return gulp.start('export');
 });
 
 
@@ -132,19 +125,19 @@ global.getBase64EncodedOnePixelPng = (function () {
  */
 gulp.task('compile-less', function () {
     return es.merge(
-        gulp.src(['./less/style.*', '!./less/style.ie.*'])
-            .pipe(changed('./css/'))
+        gulp.src(['./styles/style.*', '!./styles/style.ie.*'])
+            .pipe(changed('./build/css/'))
             .pipe(plumber())
             .pipe(less())
             .pipe(concat('style.css'))
-            .pipe(gulp.dest('./css/')),
+            .pipe(gulp.dest('./build/css/')),
 
-        gulp.src('./less/style.ie.*')
-            .pipe(changed('./css/'))
+        gulp.src('./styles/style.ie.*')
+            .pipe(changed('./build/css/'))
             .pipe(plumber())
             .pipe(less())
             .pipe(concat('style.ie.css'))
-            .pipe(gulp.dest('./css/'))
+            .pipe(gulp.dest('./build/css/'))
     );
 });
 
@@ -160,13 +153,13 @@ gulp.task('rasterize-svg', function () {
     scaleValues.forEach(function (scaleValue) {
         resultStream = es.merge(resultStream,
             gulp.src('./img/*.svg')
-                .pipe(changed('./img/public/'))
+                .pipe(changed('./build/img/'))
                 .pipe(raster({ scale: scaleValue }))
                 .pipe(rename({
                     suffix: (scaleValue != 1) ? '@' + scaleValue + 'x' : '',
                     extname: '.png'
                 }))
-                .pipe(gulp.dest('./img/public/')));
+                .pipe(gulp.dest('./build/img/')));
     });
 
     return resultStream;
@@ -174,10 +167,10 @@ gulp.task('rasterize-svg', function () {
 
 gulp.task('optimize-images', function () {
     return (
-        gulp.src(['./img/*.{png,jpg,jpeg,gif,svg}', './img/public/*.{png,jpg,jpeg,gif,svg}'])
-            .pipe(changed('./img/public/'))
+        gulp.src(['./img/*.{png,jpg,jpeg,gif,svg}'])
+            .pipe(changed('./build/img/'))
             .pipe(imagemin())
-            .pipe(gulp.dest('./img/public/'))
+            .pipe(gulp.dest('./build/img/'))
     );
 });
 
@@ -190,12 +183,12 @@ gulp.task('generate-sprites', ['rasterize-svg'], function () {
 
         excludedScaleValues.splice(index, 1);
         excludedScaleValues = excludedScaleValues.map(function (scaleValue, index) {
-            return '!./img/public/*@' + scaleValue + 'x.png';
+            return '!./build/img/*@' + scaleValue + 'x.png';
         });
 
         var suffix = (scaleValue != 1) ? '@' + scaleValue + 'x' : '',
 
-            spriteData = gulp.src(['./img/public/*' + suffix + '.png', '!./img/public/sprite*.png'].concat(excludedScaleValues))
+            spriteData = gulp.src(['./build/img/*' + suffix + '.png', '!./build/img/sprite*.png'].concat(excludedScaleValues))
                             .pipe(spritesmith({
                                 imgName: 'sprite' + suffix + '.png',
                                 cssName: 'sprite' + suffix + '.less',
@@ -211,10 +204,10 @@ gulp.task('generate-sprites', ['rasterize-svg'], function () {
 
     return es.merge(
         imgStream
-            .pipe(gulp.dest('./img/public/')),
+            .pipe(gulp.dest('./build/img/')),
 
         cssStream
-            .pipe(gulp.dest('./less/'))
+            .pipe(gulp.dest('./styles/'))
     );
 });
 
