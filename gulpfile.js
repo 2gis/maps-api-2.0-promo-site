@@ -264,17 +264,22 @@ gulp.task('browserify', function(){
         .pipe(gulp.dest('./build/js'));
 });
 
-var connect = require('connect');
-var http    = require('http');
+var express = require('express');
+var morgan  = require('morgan');
+// var http    = require('http');
 var config  = {
     root: './build',
     port: 8080
 };
 
 gulp.task('serve', function(){
-    var app = connect()
-        .use(connect.logger('dev'))
-        .use(connect.static(config.root));
+    var app = express()
+        .use(morgan('dev'))
+        .use(express.static(config.root))
+        .use('*', function(req, res) {
+            res.sendfile(config.root + '/index.html');
+        });
 
-    http.createServer(app).listen(config.port);
+    // http.createServer(app).listen(config.port);
+    app.listen(config.port);
 });

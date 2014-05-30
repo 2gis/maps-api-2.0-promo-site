@@ -9,21 +9,24 @@ module.exports = function(app) {
 		},
 
 		initialize: function() {
-			app.state.on('change:page', this.update, this);
+			this.model.on('change:page', this.update, this);
 			this.render();
 		},
 
 		update: function() {
-			this.$('.intro')[(app.state.get('page') === 0 ? 'remove' : 'add') + 'Class']('intro__go');
+			this.$('.intro')[(this.model.get('page') == 0 ? 'remove' : 'add') + 'Class']('intro__go');
+			return this;
 		},
 
 		start: function() {
 			// console.log(this);
-			app.state.upState();
+			this.model.upState();
 		},
 
 		render: function() {
 			console.log(this);
+			this.update();
+			return this;
 		}
 	});
 };

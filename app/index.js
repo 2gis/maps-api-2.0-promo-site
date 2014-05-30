@@ -8,6 +8,6 @@ app.root = '/';
 app.state = new State();
 $(document).ready(function() {
 	app.router = new Router();
+	Backbone.history.start({ pushState: true, root: app.root });
 });
 
-Backbone.history.start({ pushState: true, root: app.root });

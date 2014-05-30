@@ -6,7 +6,9 @@
   "license": "WTFPL",
   "dependencies": {
     "backbone": "^1.1.2",
-    "jquery": "~1.11.1"
+    "express": "^4.3.2",
+    "jquery": "~1.11.1",
+    "morgan": "^1.1.1"
   },
   "browser": {
     "underscore": "backbone/node_modules/underscore"

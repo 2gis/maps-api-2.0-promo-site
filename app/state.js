@@ -8,20 +8,27 @@ module.exports = function() {
 			max: 10
 		},
 
+		validate: function(attrs, options) {
+			console.log(attrs);
+			if (attrs.page > attrs.max) {
+				return 'error';
+			}
+
+			if (attrs.page < 0) {
+				return 'error';
+			}
+		},
+
 		setState: function(page) {
-			this.set('page', page, {silent: true});
+			this.set('page', page, {validate:true});
 		},
 
 		upState: function() {
-			this.set('page', 
-				Math.min(this.get('page') + 1, this.get('max'))
-			);
+			this.set('page', +this.get('page') + 1, {validate:true});
 		},
 
 		downState: function() {
-			this.set('page', 
-				Math.max(this.get('page') - 1, this.get('max'))
-			);
+			this.set('page', +this.get('page') - 1, {validate:true});
 		}
 	});
 };

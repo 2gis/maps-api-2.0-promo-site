@@ -3,7 +3,8 @@ var Backbone = require('backbone'),
 	
 Backbone.$ = $;
 module.exports = function (app) {
-	var BaseView = require('./view/base')(app);
+	var BaseView = require('./view/base')(app),
+		ControlView = require('./view/control')(app);
 	return Backbone.Router.extend({
 		routes: {
 			'': 'index',
@@ -11,13 +12,15 @@ module.exports = function (app) {
 		},
 
 		initialize: function() {
-			app.base = new BaseView({el: 'body'});
-			// console.log($('.intro'));
+			app.base = new BaseView({el: 'body', model: app.state});
+			app.control = new ControlView({model: app.state});
+			app.control.$el.appendTo(app.base.$el);
 
 			app.state.on('change:page', this.update, this);
 		},
 
 		update: function() {
+			// console.log(app.state.hasChanged('page'));
 			this.navigate('/' + app.state.get('page'), {trigger: true});
 		},
 
@@ -27,6 +30,7 @@ module.exports = function (app) {
 		},
 
 		renderPage: function(page) {
+			app.state.setState(page);
 			console.log(page);
 		}
 	});
