@@ -13,6 +13,7 @@ module.exports = function(app) {
 
 		initialize: function() {
 			this.model.on('change:page', this.update, this);
+			this.$el.hide();
 			this.render().update();
 		},
 
@@ -20,7 +21,7 @@ module.exports = function(app) {
 			var action = 'fade' + ((this.model.get('page') == 0 ||
 				this.model.get('page') == this.model.get('max')) ? 'Out' : 'In');
 
-			console.log(action);
+			console.log(action, this.model.get('page'), this.model.get('page') == 0);
 			this.$el[action]();
 			// this.$el[
 			// 	(this.model.get('page') === 0 ? 'remove' : 'add') + 'Class']('intro__go');
