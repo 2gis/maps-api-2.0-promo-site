@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html class="page">
-    {{> head}}
-    <body class="page__body">
-        <div class="map">Some tiles here</div>
-        {{> header}}
-        <div class="footer">
-            <div class="panel panel_type_white bankomats-panel footer__panel">
-                <span class="bankomats-panel__title">Банкоматы<br />Москвы</span>
-            </div>
-            <a class="footer__2gis-logotype-dark" href="#" title="">2GIS</a>
+{{#layout}}
+    <div class="map">Some tiles here</div>
+    {{> header}}
+    <div class="footer">
+        <div class="panel panel_type_white bankomats-panel footer__panel">
+            <span class="bankomats-panel__title">Банкоматы<br />Москвы</span>
         </div>
-    </body>
-</html>
+        <a class="footer__2gis-logotype-dark" href="#" title="">2GIS</a>
+    </div>
+{{/layout}}

@@ -18,7 +18,8 @@ var gulp = require('gulp'),
     glob = require('glob'),
     path = require('path'),
 
-    Png = require('png').Png;
+    Png = require('png').Png,
+    Mustache = require('mustache');
 
 
 /**
@@ -217,6 +218,11 @@ gulp.task('generate-sprites', ['rasterize-svg'], function () {
  */
 gulp.task('build-templates', function () {
     var partialsFiles = glob.sync('./partials/*.{mustache,html}'),
+        layoutPartialsFiles = glob.sync('./partials/layout*.{mustache,html}'),
+
+        pagesFiles = glob.sync('./pages/*.{mustache,html}'),
+
+        views = {},
         partials = {};
 
     partialsFiles.forEach(function (partialPath) {
@@ -228,9 +234,26 @@ gulp.task('build-templates', function () {
         partials[partialName] = partialContent;
     });
 
+    layoutPartialsFiles.forEach(function (layoutPartialPath) {
+        var layoutPartialFileExtension = path.extname(layoutPartialPath),
+
+            layoutPartialName = path.basename(layoutPartialPath, layoutPartialFileExtension),
+            layoutPartialContent = String(fs.readFileSync(layoutPartialPath));
+
+        views[layoutPartialName] = function() {
+            return function(content, render) {
+                var layoutPartials = new Object(partials);
+
+                layoutPartials._content = render(content);
+
+                return Mustache.render(layoutPartialContent, {}, partials);
+            };
+        };
+    });
+
     return (
         gulp.src('./pages/*.{mustache,html}')
-            .pipe(mustache({}, {}, partials))
+            .pipe(mustache(views, {}, partials))
             .pipe(gulp.dest('./build/'))
     );
 });

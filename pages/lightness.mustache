@@ -1,28 +1,24 @@
-<!DOCTYPE html>
-<html class="page">
-    {{> head}}
-    <body class="page__body">
-        <div class="map">Some tiles here</div>
-        {{> header}}
-        <div class="footer">
-            <div class="panel panel_type_white footer__panel lightness-panel">
-                <div class="lightness-panel__counter">00 : 02 : 25</div>
-                <div class="lightness-panel__version lightness-panel__version_of_new-api">
-                    <span class="lightness-panel__version-title">Новый API</span>
-                    <span class="lightness-panel__progress-bar"></span>
-                    <p class="lightness-panel__version-speed-level">
-                        JS код: 106,3 KB  /  CSS код: 8,4 KB
-                    </p>
-                </div>
-                <div class="lightness-panel__version lightness-panel__version_of_old-api">
-                    <span class="lightness-panel__version-title">Старый API</span>
-                    <span class="lightness-panel__progress-bar"></span>
-                    <p class="lightness-panel__version-speed-level">
-                        JS код: 156,7 KB  /  CSS код: 10,0 KB
-                    </p>
-                </div>
+{{#layout}}
+    <div class="map">Some tiles here</div>
+    {{> header}}
+    <div class="footer">
+        <div class="panel panel_type_white footer__panel lightness-panel">
+            <div class="lightness-panel__counter">00 : 02 : 25</div>
+            <div class="lightness-panel__version lightness-panel__version_of_new-api">
+                <span class="lightness-panel__version-title">Новый API</span>
+                <span class="lightness-panel__progress-bar"></span>
+                <p class="lightness-panel__version-speed-level">
+                    JS код: 106,3 KB  /  CSS код: 8,4 KB
+                </p>
             </div>
-            <a class="footer__2gis-logotype-dark" href="#" title="">2GIS</a>
+            <div class="lightness-panel__version lightness-panel__version_of_old-api">
+                <span class="lightness-panel__version-title">Старый API</span>
+                <span class="lightness-panel__progress-bar"></span>
+                <p class="lightness-panel__version-speed-level">
+                    JS код: 156,7 KB  /  CSS код: 10,0 KB
+                </p>
+            </div>
         </div>
-    </body>
-</html>
+        <a class="footer__2gis-logotype-dark" href="#" title="">2GIS</a>
+    </div>
+{{/layout}}
