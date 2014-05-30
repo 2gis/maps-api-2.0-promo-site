@@ -27,11 +27,13 @@ module.exports = function(app) {
 		render: function() {
 			console.log(this);
 			this.model.map = new DG.Map('map', {
-	            "center": new DG.LatLng(54.980156831455, 82.897440725094),
-	            "zoom": 13,
-	            "geoclicker": true,
-	            "worldCopyJump": true,
-	            "locationControl": true
+	            'center': new DG.LatLng(54.980156831455, 82.897440725094),
+	            'zoom': 13,
+	            'geoclicker': false,
+	            'worldCopyJump': true,
+	            'locationControl': false,
+	            'zoomControl': false,
+	            'fullscreenControl': false
 	        });
 			this.update();
 			return this;
