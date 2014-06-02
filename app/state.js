@@ -5,7 +5,7 @@ module.exports = function() {
 	return Backbone.Model.extend({
 		defaults: {
 			page: 0,
-			max: 10
+			max: 7
 		},
 
 		validate: function(attrs, options) {
