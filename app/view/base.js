@@ -8,6 +8,11 @@ module.exports = function(app) {
 			'click .intro': 'start'
 		},
 
+		template: {
+			intro: require('../../pages/index'),
+			outro: require('../../pages/start')
+		},
+
 		initialize: function() {
 			this.model.on('change:page', this.update, this);
 			DG.then(this.render.bind(this));
@@ -22,12 +27,12 @@ module.exports = function(app) {
 
 		start: function() {
 			// console.log(this);
-			this.model.upState();
+			this.model.upPage();
 		},
 
 		render: function() {
 			console.log(this);
-			this.model.map = new DG.Map('map', {
+			this.model.set('map', new DG.Map('map', {
 	            'center': new DG.LatLng(54.980156831455, 82.897440725094),
 	            'zoom': 13,
 	            'geoclicker': false,
@@ -35,7 +40,9 @@ module.exports = function(app) {
 	            'locationControl': false,
 	            'zoomControl': false,
 	            'fullscreenControl': false
-	        });
+	        }));
+	        // this.$el.append(this.template.outro.render());
+	        // console.log(this.template.outro.render({layout: true}));
 			this.update();
 			return this;
 		}

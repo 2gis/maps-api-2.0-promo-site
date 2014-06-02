@@ -19,15 +19,15 @@ module.exports = function() {
 			}
 		},
 
-		setState: function(page) {
+		setPage: function(page) {
 			this.set('page', page, {validate:true});
 		},
 
-		upState: function() {
+		upPage: function() {
 			this.set('page', +this.get('page') + 1, {validate:true});
 		},
 
-		downState: function() {
+		downPage: function() {
 			this.set('page', +this.get('page') - 1, {validate:true});
 		}
 	});

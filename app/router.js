@@ -25,12 +25,12 @@ module.exports = function (app) {
 		},
 
 		index: function () {
-			app.state.setState(0);
+			app.state.setPage(0);
 			console.log('ahoy!', app.base);			
 		},
 
 		renderPage: function(page) {
-			app.state.setState(page);
+			app.state.setPage(page);
 			console.log(page);
 		}
 	});
