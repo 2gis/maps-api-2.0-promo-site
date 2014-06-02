@@ -15,7 +15,7 @@ module.exports = function(app) {
 		},
 
 		update: function() {
-			this.$('.intro')[(this.model.get('page') == 0 ? 'remove' : 'add') + 'Class']('intro__go');
+			this.$('.intro')[(this.model.get('page') == 0 ? 'remove' : 'add') + 'Class']('intro_is-started_true');
 			this.$('.map')[(this.model.get('page') == 0 ? 'add' : 'remove') + 'Class']('map_has-overlay_dark');
 			return this;
 		},

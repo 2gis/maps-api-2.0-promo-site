@@ -24,7 +24,7 @@ module.exports = function(app) {
 			console.log(action, this.model.get('page'), this.model.get('page') == 0);
 			this.$el[action]();
 			// this.$el[
-			// 	(this.model.get('page') === 0 ? 'remove' : 'add') + 'Class']('intro__go');
+			// 	(this.model.get('page') === 0 ? 'remove' : 'add') + 'Class']('intro_is-started_true');
 			return this;
 		},
 
