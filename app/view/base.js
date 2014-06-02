@@ -1,5 +1,4 @@
-var Backbone = require('backbone'),
-	_ = require('underscore');
+var Backbone = require('backbone');
 Backbone.$ = require('jquery');
 
 module.exports = function(app) {

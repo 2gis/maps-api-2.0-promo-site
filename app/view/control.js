@@ -1,5 +1,4 @@
-var Backbone = require('backbone'),
-	_ = require('underscore');
+var Backbone = require('backbone');
 Backbone.$ = require('jquery');
 
 module.exports = function(app) {
@@ -7,7 +6,8 @@ module.exports = function(app) {
 		events: {
 			'click .features__arrow-link_to_right': 'next',
 			'click .features__arrow-link_to_left': 'prev',
-			'click .features__table-of-contents-item': 'goPage'
+			'click .features__table-of-contents-item': 'goPage',
+			'click .features__round-link': 'setState'
 		},
 
 		template: require('../../partials/header'),
@@ -29,7 +29,7 @@ module.exports = function(app) {
 			return this;
 		},
 
-		setState: function() {
+		setPage: function() {
 			var pins = 'features__table-of-contents-item',
 				tabs = 'features__list-item',
 				active = '_is-active_true',
@@ -43,7 +43,7 @@ module.exports = function(app) {
 		},
 
 		update: function() {
-			this.toggle().setState();
+			this.toggle().setPage();
 			return this;
 		},
 
@@ -62,6 +62,12 @@ module.exports = function(app) {
 		goPage: function(e) {
 			this.model.setPage(this.$(e.target).index() + 1);
 			// this.model.downPage();
+			return this;
+		},
+
+		setState: function(e) {
+			e.preventDefault();
+			this.model.set('state', this.$(e.target).data('state'));
 			return this;
 		},
 
