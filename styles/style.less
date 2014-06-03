@@ -309,7 +309,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 0 0 44px 0;
+    height: 0;
     }
     .footer__panel {
         position: absolute;
@@ -318,9 +318,14 @@
         z-index: 1;
         display: none;
         }
-        .footer__panel_is-active_true {
-            display: block;
-            }
+    .footer__panel_is-active_true {
+        display: block;
+        }
+    .footer__panel_name_links {
+        right: 0;
+        bottom: 45px;
+        left: 0;
+        }
     .footer__2gis-logotype-dark {
         .noRepeatableBg('2gis-logotype-dark');
         position: absolute;
@@ -390,8 +395,8 @@
 .features {
     position: relative;
     box-sizing: border-box;
-    width: 400px;
     min-height: 100px;
+    width: 400px;
     font: normal 14px/19px Arial, sans-serif;
     }
     .features__arrow-link {
