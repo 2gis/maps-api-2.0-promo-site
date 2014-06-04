@@ -85,8 +85,12 @@
         cursor: pointer;
         transition:
             opacity 0.2s,
-            margin-top 0.4s,
+            margin-top 0.2s,
             top 0.4s;
+
+        &:hover {
+            margin-top: -226px;
+            }
 
         &:before,
         &:after {
@@ -109,6 +113,11 @@
             margin-left: -10px;
             width: 20px;
             height: 11px;
+            transition: top 0.1s ease-out;
+            }
+
+        &:hover:after {
+            top: 369px;
             }
         }
     .intro_is-started_true .intro__header {
