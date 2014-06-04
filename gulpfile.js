@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     util = require('gulp-util'),
     changed = require('gulp-changed'),
     clean = require('gulp-clean'),
+    autoprefixer = require('gulp-autoprefixer'),
 
     fs = require('fs'),
     glob = require('glob'),
@@ -138,6 +139,7 @@ gulp.task('compile-less', function () {
             .pipe(changed('./build/css/'))
             .pipe(plumber())
             .pipe(less())
+            .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
             .pipe(concat('style.css'))
             .pipe(gulp.dest('./build/css/')),
 
@@ -145,6 +147,7 @@ gulp.task('compile-less', function () {
             .pipe(changed('./build/css/'))
             .pipe(plumber())
             .pipe(less())
+            .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
             .pipe(concat('style.ie.css'))
             .pipe(gulp.dest('./build/css/'))
     );
