@@ -60,8 +60,12 @@
     bottom: 0;
     left: 0;
     overflow: hidden;
+    background-color: rgba(57, 57, 57, 0.35);
+    transition: opacity 0.2s;
+    opacity: 1;
     }
 .intro_is-started_true {
+    opacity: 0;
     }
     .intro__header {
         position: absolute;
@@ -81,10 +85,8 @@
         text-align: center;
         white-space: normal;
         font: normal 100px/100px SuisseCond, Arial, sans-serif;
-        opacity: 1;
         cursor: pointer;
         transition:
-            opacity 0.2s,
             margin-top 0.2s,
             top 0.4s;
 
@@ -123,7 +125,6 @@
     .intro_is-started_true .intro__header {
         top: 200%;
         margin-top: 0;
-        opacity: 0;
         }
         .intro__api-version {
             color: #a4ce3b;
