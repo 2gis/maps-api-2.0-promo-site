@@ -54,95 +54,79 @@
 
 
 .intro {
-    display: inline-block;
-    height: 100%;
-    content: '';
-    vertical-align: middle;
-    white-space: nowrap;
-    line-height: 100%;
-    transition-duration: 0.3s;
-
-    &:before {
-        display: inline-block;
-        height: 100%;
-        content: '';
-        vertical-align: middle;
-        line-height: 100%;
-        }
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
     }
 .intro_is-started_true {
-    -webkit-transform: translateY(999px);
-    transform: translateY(999px);
     }
-    .intro__content {
-        position: relative;
-        display: inline-block;
+    .intro__header {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        left: 0;
         box-sizing: border-box;
-        padding: 72px 0 0 0;
+        margin: -216px auto 0;
+        padding: 166px 0 0 0;
         width: 432px;
         height: 432px;
-        vertical-align: middle;
+        border-radius: 50%;
+        background-color: rgb(57, 57, 57);
+        background-color: rgba(57, 57, 57, 0.93);
+        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.7);
+        color: #fff;
         text-align: center;
         white-space: normal;
-        font: normal 28px/34px SuisseCond, Arial, sans-serif;
+        font: normal 100px/100px SuisseCond, Arial, sans-serif;
+        opacity: 1;
         cursor: pointer;
-        transition-duration: 0.3s;
+        transition:
+            opacity 0.2s,
+            margin-top 0.4s,
+            top 0.4s;
 
-        &:before {
+        &:before,
+        &:after {
             position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 0;
-            border-radius: 50%;
-            background-color: rgb(57, 57, 57);
-            background-color: rgba(57, 57, 57, 0.93);
-            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.7);
+            left: 50%;
+            background-size: 100%;
             content: '';
             }
-        }
-        .intro__header {
-            position: relative;
-            padding-top: 92px;
-            color: #fff;
-            font-size: 100px;
-            line-height: 100px;
 
-            &:before,
-            &:after {
-                position: absolute;
-                left: 50%;
-                background-size: 100%;
-                content: '';
-                }
-
-            &:before {
-                .noRepeatableBg('2gis-logotype');
-                top: 0;
-                margin-left: -56px;
-                width: 112px;
-                height: 49px;
-                }
-            &:after {
-                .noRepeatableBg('array-down');
-                top: 284px;
-                margin-left: -10px;
-                width: 20px;
-                height: 11px;
-                }
+        &:before {
+            .noRepeatableBg('2gis-logotype');
+            top: 71px;
+            margin-left: -56px;
+            width: 112px;
+            height: 49px;
             }
-            .intro__api-version {
-                color: #a4ce3b;
-                }
-            .intro__subheader {
-                display: block;
-                margin-top: 5px;
-                color: #cfcfcf;
-                text-transform: uppercase;
-                font-size: 28px;
-                line-height: 34px;
-                }
+        &:after {
+            .noRepeatableBg('array-down');
+            top: 354px;
+            margin-left: -10px;
+            width: 20px;
+            height: 11px;
+            }
+        }
+    .intro_is-started_true .intro__header {
+        top: 200%;
+        margin-top: 0;
+        opacity: 0;
+        }
+        .intro__api-version {
+            color: #a4ce3b;
+            }
+        .intro__subheader {
+            display: block;
+            margin-top: 5px;
+            color: #cfcfcf;
+            text-transform: uppercase;
+            font-size: 28px;
+            line-height: 34px;
+            }
 
 
 .start {
