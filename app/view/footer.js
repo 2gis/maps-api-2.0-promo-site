@@ -6,26 +6,21 @@ module.exports = function(app) {
 		template: require('../../partials/footer'),
 
 		initialize: function() {
-			this.model.on('change:page', this.setPage, this);
-			// this.$el.hide();
-			this.render().setPage();
+			this.model.on('change:state', this.setState, this);
+			this.render().setState();
 		},
 
-		setPage: function() {
-			var pins = 'features__table-of-contents-item',
-				tabs = 'footer__panel',
+		setState: function() {
+			var tabs = 'footer__panel',
 				active = '_is-active_true',
-				item = ':eq(' + (this.model.get('page') - 1) + ')';
-			// console.log(this.$(selector));
-			// this.$('.' + pins + active).removeClass(pins + active);
-			// this.$('.' + pins + item).addClass(pins + active);
+				item = '[data-footer-state=' + this.model.get('state') + ']';
+
 			this.$('.' + tabs + active).removeClass(tabs + active);
-			this.$('.' + tabs + item).addClass(tabs + active);
+			this.$(item).addClass(tabs + active);
 			return this;
 		},
 
 		render: function() {
-			// console.log(this);
 			this.$el.html(this.template.render());
 			return this;
 		}
