@@ -21,10 +21,7 @@ module.exports = function(app) {
 			var action = 'fade' + ((this.model.get('page') == 0 ||
 				this.model.get('page') == this.model.get('max')) ? 'Out' : 'In');
 
-			// console.log(action, this.model.get('page'), this.model.get('page') == 0);
 			this.$el[action]();
-			// this.$el[
-			// 	(this.model.get('page') === 0 ? 'remove' : 'add') + 'Class']('intro_is-started_true');
 			return this;
 		},
 
@@ -33,7 +30,7 @@ module.exports = function(app) {
 				tabs = 'features__list-item',
 				active = '_is-active_true',
 				item = ':eq(' + (this.model.get('page') - 1) + ')';
-			// console.log(this.$(selector));
+
 			this.$('.' + pins + active).removeClass(pins + active);
 			this.$('.' + tabs + active).removeClass(tabs + active);
 
@@ -61,7 +58,6 @@ module.exports = function(app) {
 
 		goPage: function(e) {
 			this.model.setPage(this.$(e.target).index() + 1);
-			// this.model.downPage();
 			return this;
 		},
 
@@ -80,9 +76,7 @@ module.exports = function(app) {
 		},
 
 		render: function() {
-			// console.log(this);
 			this.$el.html(this.template.render());
-			// this.$el.hide();
 			return this;
 		}
 	});

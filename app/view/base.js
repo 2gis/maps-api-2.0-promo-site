@@ -15,7 +15,6 @@ module.exports = function(app) {
 
 		initialize: function() {
 			this.model.on('change:page', this.update, this);
-			// DG.then(this.render.bind(this));
 			this.render();
 		},
 
@@ -27,29 +26,16 @@ module.exports = function(app) {
 		},
 
 		start: function() {
-			// console.log(this);
 			this.model.upPage();
 		},
 
 		render: function() {
-			console.log(this);
-
 			this.$el.html([
 				this.template.map.render(),
 				this.template.intro.render({layout: true}),
 				this.template.outro.render({layout: true})
 				].join(''));
-			// this.model.set('map', new DG.Map('map', {
-	  //           'center': new DG.LatLng(54.980156831455, 82.897440725094),
-	  //           'zoom': 13,
-	  //           'geoclicker': false,
-	  //           'worldCopyJump': true,
-	  //           'locationControl': false,
-	  //           'zoomControl': false,
-	  //           'fullscreenControl': false
-	  //       }));
-	        // this.$el.append(this.template.outro.render());
-	        // console.log(this.template.outro.render({layout: true}));
+
 			this.update();
 			return this;
 		}

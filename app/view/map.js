@@ -20,14 +20,12 @@ module.exports = function(app) {
 		initialize: function() {
 			this.model.on('change:state', this.update, this);
 			DG.then(this.render.bind(this));
-			// this.render();
 		},
 
 		update: function() {
 			DG.then(function() {
 				var map = this.model.get('map'),
 					scene = maps[this.model.get('state')];
-				// console.log(this.model.get('state'));
 
 				scene && scene(map);
 

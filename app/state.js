@@ -4,12 +4,10 @@ Backbone.$ = require('jquery');
 module.exports = function() {
 	return Backbone.Model.extend({
 		defaults: {
-			// page: ,
 			max: 7
 		},
 
 		validate: function(attrs, options) {
-			// console.log(attrs);
 			if (attrs.page > attrs.max) {
 				return 'error';
 			}

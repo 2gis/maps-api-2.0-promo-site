@@ -27,18 +27,15 @@ module.exports = function (app) {
 		},
 
 		update: function() {
-			// console.log(app.state.hasChanged('page'));
 			this.navigate('/' + app.state.get('page'));
 		},
 
 		index: function () {
 			app.state.setPage(0);
-			// console.log('ahoy!', app.base);			
 		},
 
 		renderPage: function(page) {
 			app.state.setPage(page);
-			// console.log(page);
 		}
 	});
 }
