@@ -59,13 +59,13 @@
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 1;
     overflow: hidden;
     background-color: rgba(57, 57, 57, 0.35);
-    opacity: 1;
-    transition: opacity 0.2s;
+    transition: z-index 0.2s;
     }
 .intro_is-started_true {
-    opacity: 0;
+    z-index: -1;
     }
     .intro__header {
         position: absolute;
@@ -84,13 +84,15 @@
         text-align: center;
         white-space: normal;
         font: normal 100px/100px 'SuisseIntlCond', Arial, sans-serif;
+        opacity: 1;
         cursor: pointer;
         transition:
-            margin-top 0.2s,
-            top 0.4s;
+            margin-top 0.15s,
+            top 0.4s,
+            opacity 0.1s;
 
         &:hover {
-            margin-top: -226px;
+            margin-top: -236px;
             }
 
         &:before,
@@ -114,7 +116,7 @@
             margin-left: -10px;
             width: 20px;
             height: 11px;
-            transition: top 0.1s ease-out;
+            transition: top 0.15s;
             }
 
         &:hover:after {
@@ -124,6 +126,7 @@
     .intro_is-started_true .intro__header {
         top: 200%;
         margin-top: 0;
+        opacity: 0;
         }
         .intro__api-version {
             color: #a4ce3b;
@@ -329,8 +332,8 @@
         .footer__link {
             display: inline-block;
             margin: 0 0 0 36px;
-            color: #E5E5E5;
             outline: none;
+            color: #E5E5E5;
 
             &:hover {
                 color: #fff;
