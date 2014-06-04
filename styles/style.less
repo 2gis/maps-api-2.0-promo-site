@@ -143,7 +143,9 @@
     height: 100%;
     content: '';
     vertical-align: middle;
-    line-height: 100%;
+    line-height: 100%; 
+    opacity: 1;
+    transition: opacity 0.2s;
 
     &:before {
         display: inline-block;
@@ -153,6 +155,9 @@
         line-height: 100%;
         }
     }
+    .start_is-started_true {
+        opacity: 0;
+        }
     .start__content {
         display: inline-block;
         vertical-align: middle;

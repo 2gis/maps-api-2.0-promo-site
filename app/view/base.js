@@ -9,18 +9,20 @@ module.exports = function(app) {
 
 		template: {
 			intro: require('../../pages/index'),
+			map: require('../../partials/map'),
 			outro: require('../../pages/start')
 		},
 
 		initialize: function() {
 			this.model.on('change:page', this.update, this);
 			// DG.then(this.render.bind(this));
-			// this.render();
+			this.render();
 		},
 
 		update: function() {
-			this.$('.intro')[(this.model.get('page') == 0 ? 'remove' : 'add') + 'Class']('intro_is-started_true');
-			this.$('.map')[(this.model.get('page') == 0 ? 'add' : 'remove') + 'Class']('map_has-overlay_dark');
+			this.$('.map')[(this.model.get('page') == 0 || this.model.get('page') == this.model.get('max') ? 'add' : 'remove') + 'Class']('map_has-overlay_dark');
+			this.$('.intro')[(this.model.get('page') != 0 ? 'add' : 'remove') + 'Class']('intro_is-started_true');
+			this.$('.start')[(this.model.get('page') != this.model.get('max') ? 'add' : 'remove') + 'Class']('start_is-started_true');
 			return this;
 		},
 
@@ -31,6 +33,12 @@ module.exports = function(app) {
 
 		render: function() {
 			console.log(this);
+
+			this.$el.html([
+				this.template.map.render(),
+				this.template.intro.render({layout: true}),
+				this.template.outro.render({layout: true})
+				].join(''));
 			// this.model.set('map', new DG.Map('map', {
 	  //           'center': new DG.LatLng(54.980156831455, 82.897440725094),
 	  //           'zoom': 13,
