@@ -2,6 +2,9 @@ var Backbone = require('backbone');
 Backbone.$ = require('jquery');
 
 module.exports = function(app) {
+	var MapView = require('./map')(app),
+		ControlView = require('./control')(app),
+		FooterView = require('./footer')(app);
 	return Backbone.View.extend({
 		events: {
 			'click .intro': 'start'
@@ -35,6 +38,10 @@ module.exports = function(app) {
 				this.template.intro.render({layout: true}),
 				this.template.outro.render({layout: true})
 				].join(''));
+
+			this.$el.append(new MapView({model: this.model}).$el);
+			this.$el.append(new ControlView({model: this.model}).$el);
+			this.$el.append(new FooterView({model: this.model}).$el);
 
 			this.update();
 			return this;
