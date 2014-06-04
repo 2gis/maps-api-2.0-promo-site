@@ -14,8 +14,7 @@ module.exports = function(app) {
 
 		initialize: function() {
 			this.model.on('change:page', this.update, this);
-			this.$el.hide();
-			this.render().update();
+			this.render().toggle();
 		},
 
 		toggle: function() {
@@ -36,14 +35,15 @@ module.exports = function(app) {
 				item = ':eq(' + (this.model.get('page') - 1) + ')';
 			// console.log(this.$(selector));
 			this.$('.' + pins + active).removeClass(pins + active);
-			this.$('.' + pins + item).addClass(pins + active);
 			this.$('.' + tabs + active).removeClass(tabs + active);
+
+			this.$('.' + pins + item).addClass(pins + active);
 			this.$('.' + tabs + item).addClass(tabs + active);
 			return this;
 		},
 
 		update: function() {
-			this.toggle().setPage();
+			this.toggle().setPage().setState();
 			return this;
 		},
 
@@ -66,14 +66,23 @@ module.exports = function(app) {
 		},
 
 		setState: function(e) {
-			e.preventDefault();
-			this.model.set('state', this.$(e.target).data('state'));
+			var el, state;
+			if (e) {
+				e.preventDefault();
+				el = this.$(e.target);
+			} else {
+				el = this.$('.features__list-item_is-active_true .features__round-link:eq(0)');
+			}
+			state = el.data('state') ? el.data('state') : 'page' + this.model.get('page');
+			console.log(state);
+			this.model.set('state', state);
 			return this;
 		},
 
 		render: function() {
 			// console.log(this);
 			this.$el.html(this.template.render());
+			// this.$el.hide();
 			return this;
 		}
 	});

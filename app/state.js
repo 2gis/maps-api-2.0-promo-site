@@ -4,12 +4,12 @@ Backbone.$ = require('jquery');
 module.exports = function() {
 	return Backbone.Model.extend({
 		defaults: {
-			page: 0,
+			// page: ,
 			max: 7
 		},
 
 		validate: function(attrs, options) {
-			console.log(attrs);
+			// console.log(attrs);
 			if (attrs.page > attrs.max) {
 				return 'error';
 			}
@@ -19,8 +19,8 @@ module.exports = function() {
 			}
 		},
 
-		setPage: function(page) {
-			this.set('page', page, {validate:true});
+		setPage: function(page, silent) {
+			this.set('page', page, {validate:true, silent: silent});
 		},
 
 		upPage: function() {

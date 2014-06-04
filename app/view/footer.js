@@ -25,7 +25,7 @@ module.exports = function(app) {
 		},
 
 		render: function() {
-			console.log(this);
+			// console.log(this);
 			this.$el.html(this.template.render());
 			return this;
 		}
