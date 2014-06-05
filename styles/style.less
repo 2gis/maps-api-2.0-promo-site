@@ -142,13 +142,16 @@
 
 
 .start {
-    display: inline-block;
-    height: 100%;
-    content: '';
-    vertical-align: middle;
-    line-height: 100%; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
     opacity: 1;
-    transition: opacity 0.2s;
+    transition:
+        opacity 0.2s,
+        z-index 0.4s;
 
     &:before {
         display: inline-block;
@@ -158,9 +161,10 @@
         line-height: 100%;
         }
     }
-    .start_is-started_true {
-        opacity: 0;
-        }
+.start_is-started_true {
+    z-index: -1;
+    opacity: 0;
+    }
     .start__content {
         display: inline-block;
         vertical-align: middle;
