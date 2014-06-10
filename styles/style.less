@@ -505,6 +505,9 @@
                     margin: 0 0 13px 0;
                     font: normal 28px/34px 'SuisseIntlCond', Arial, sans-serif;
                     }
+                .features__discription {
+                    margin: 19px 0;
+                    }
                 .features__round-link {
                     position: relative;
                     display: inline-block;
@@ -711,3 +714,110 @@
             text-align: right;
             font-size: 12px;
             }
+
+
+.pseudocard {
+    }
+    .pseudocard__header {
+        font: normal 22px/23px 'SuisseIntlCond', Arial, sans-serif;
+        color: #fdc854;
+        margin: 0 0 6px 0;
+        }
+    .pseudocard__address {
+        color: #aaa;
+        position: relative;
+        margin: 0 0 8px 0;
+
+        &:before {
+            content: '';
+            .noRepeatableBg('callout');
+            position: absolute;
+            left: -27px;
+            top: 2px;
+            }
+        }
+    .pseudocard__route-instructions {
+        text-decoration: line-through;
+        margin: 0 -8px 22px 0;
+        }
+    .pseudocard__try-it {
+        margin: 0 0 22px 0;
+        }
+        .pseudocard__find-entrance-link {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #e6e6e6;
+            border-radius: 2px;
+            text-decoration: none;
+            padding: 5px 10px 4px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 12px;
+            margin: 0 0 0 7px;
+
+            &:before {
+                content: '';
+                .noRepeatableBg('entrance');
+                display: inline-block;
+                margin-right: 4px;
+                vertical-align: -1px;
+                }
+            }
+
+
+.entrances-examples {
+    padding: 19px 0 0 27px;
+    }
+    .entrances-examples__play-pause-button {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 20px 0 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #fff;
+        background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12));
+        box-shadow:
+            0 2px 2px 0 rgba(0, 0, 0, 0.3),
+            0 2px 0 0 #fff inset;
+
+        &:after {
+            content: '';
+            .noRepeatableBg('play');
+            position: absolute;
+            top: 1px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            }
+        }
+    .entrances-examples__play-pause-button:active,
+    .entrances-examples__play-pause-button_is-played_true {
+        background-image: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.15));
+        box-shadow:
+            0 -2px 2px 0 rgba(0, 0, 0, 0.2),
+            0 2px 4px 1px rgba(0, 0, 0, 0.2) inset;
+
+        &:after {
+            content: '';
+            .noRepeatableBg('pause');
+            }
+        }
+    .entrances-examples__list {
+        display: inline-block;
+        }
+        .entrances-examples__item {
+            display: inline-block;
+            margin-right: 23px;
+            }
+            .entrances-examples__example-link {
+                color: #fff;
+                font-weight: bold;
+                padding: 4px 9px;
+                text-decoration: none;
+                border-radius: 4px;
+                }
+            .entrances-examples__example-link_is-shown_true {
+                background-color: #fdc854;
+                color: #000;
+                }
