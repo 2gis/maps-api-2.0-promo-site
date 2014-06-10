@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 Backbone.$ = require('jquery');
+require('../../polyfill/indexOf');
 
 module.exports = function(app) {
 	var MapView = require('./map')(app),
