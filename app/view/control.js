@@ -70,7 +70,7 @@ module.exports = function(app) {
 				el = this.$('.features__list-item_is-active_true .features__round-link:eq(0)');
 			}
 			state = el.data('state') ? el.data('state') : 'page' + this.model.get('page');
-			console.log(state);
+			// console.log(state);
 			this.model.set('state', state);
 			return this;
 		},

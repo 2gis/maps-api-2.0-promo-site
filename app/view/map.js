@@ -1,4 +1,5 @@
 var Backbone = require('backbone'),
+	_ = require('underscore'),
 	maps = require('../maps');
 Backbone.$ = require('jquery');
 
@@ -19,18 +20,18 @@ module.exports = function(app) {
 
 		initialize: function() {
 			this.model.on('change:state', this.update, this);
-			DG.then(this.render.bind(this));
+			DG.then(_.bind(this.render, this));
 		},
 
 		update: function() {
-			DG.then(function() {
+			DG.then(_.bind(function() {
 				var map = this.model.get('map'),
 					scene = maps[this.model.get('state')];
 
 				scene && scene(map);
 
 				return this;
-			}.bind(this));
+			}, this));
 		},
 
 		render: function() {
