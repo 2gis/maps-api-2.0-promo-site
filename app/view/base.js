@@ -18,6 +18,11 @@ module.exports = function(app) {
 
 		initialize: function() {
 			this.model.on('change:page', this.update, this);
+
+			this.map = new MapView({model: this.model});
+			this.control = new ControlView({model: this.model});
+			this.footer = new FooterView({model: this.model});
+
 			this.render();
 		},
 
@@ -39,9 +44,9 @@ module.exports = function(app) {
 				this.template.outro.render({layout: true})
 				].join(''));
 
-			this.$el.append(new MapView({model: this.model}).$el);
-			this.$el.append(new ControlView({model: this.model}).$el);
-			this.$el.append(new FooterView({model: this.model}).$el);
+			this.$el.append(this.map.$el);
+			this.$el.append(this.control.$el);
+			this.$el.append(this.footer.$el);
 
 			this.update();
 			return this;
