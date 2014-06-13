@@ -16,7 +16,7 @@ module.exports = function (app) {
 		},
 
 		update: function() {
-			this.navigate('/' + app.state.get('page'));
+			this.navigate('/' + app.state.getPageName());
 		},
 
 		index: function () {
@@ -24,7 +24,7 @@ module.exports = function (app) {
 		},
 
 		renderPage: function(page) {
-			app.state.setPage(page);
+			app.state.setPageName(page);
 		}
 	});
 }

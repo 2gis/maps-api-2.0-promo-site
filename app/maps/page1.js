@@ -4,15 +4,16 @@ module.exports = function(map, app) {
 		timeEl = loader.find('.lightness-panel__counter'),
 		newBar = loader.find('.lightness-panel__version_of_new-api .lightness-panel__progress-bar-fill'),
 		oldBar = loader.find('.lightness-panel__version_of_old-api .lightness-panel__progress-bar-fill'),
+		loaded = 'lightness-panel__progress-bar-fill-is_loaded',
 		timer, time = 0, ms, s;
 
 
-	newBar.add(oldBar).width(0).stop().removeClass('lightness-panel__progress-bar-fill-is_loaded');
+	newBar.add(oldBar).width(0).stop().removeClass(loaded);
 
 	newBar.animate({width: '60%'}, {
 		duration: 2000,
 		complete: function() {
-			newBar.addClass('lightness-panel__progress-bar-fill-is_loaded');
+			newBar.addClass(loaded);
 			app.base.$('.map').removeClass('map_has-overlay_dark');
 		}
 	});
@@ -20,7 +21,7 @@ module.exports = function(map, app) {
 		duration: 4000,
 		start: startTimer,
 		always: function() {
-			oldBar.addClass('lightness-panel__progress-bar-fill-is_loaded');
+			oldBar.addClass(loaded);
 	        clearInterval(timer);
 		}
 	});

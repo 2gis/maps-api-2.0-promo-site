@@ -4,7 +4,17 @@ Backbone.$ = require('jquery');
 module.exports = function() {
 	return Backbone.Model.extend({
 		defaults: {
-			max: 7
+			max: 7,
+			pages: [
+				'index',
+				'lightness',
+				'modularity',
+				'themes',
+				'entrances',
+				'openness',
+				'mobile',
+				'start'
+			]
 		},
 
 		validate: function(attrs, options) {
@@ -15,6 +25,16 @@ module.exports = function() {
 			if (attrs.page < 0) {
 				return 'error';
 			}
+		},
+
+		getPageName: function() {
+			return this.get('pages')[this.get('page')];
+		},
+
+		setPageName: function(page, silent) {
+			var pageNum = this.get('pages').indexOf(page);
+			if (pageNum === -1) { pageNum = 0; }
+			this.set('page', pageNum, {validate:true, silent: silent});
 		},
 
 		setPage: function(page, silent) {
