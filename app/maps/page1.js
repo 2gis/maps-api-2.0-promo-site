@@ -7,11 +7,12 @@ module.exports = function(map, app) {
 		timer, time = 0, ms, s;
 
 
-	newBar.width(0).stop();
-	oldBar.width(0).stop();
-	newBar.animate({width: '100%'}, {
+	newBar.add(oldBar).width(0).stop().removeClass('lightness-panel__progress-bar-fill-is_loaded');
+
+	newBar.animate({width: '60%'}, {
 		duration: 2000,
 		complete: function() {
+			newBar.addClass('lightness-panel__progress-bar-fill-is_loaded');
 			app.base.$('.map').removeClass('map_has-overlay_dark');
 		}
 	});
@@ -19,6 +20,7 @@ module.exports = function(map, app) {
 		duration: 4000,
 		start: startTimer,
 		always: function() {
+			oldBar.addClass('lightness-panel__progress-bar-fill-is_loaded');
 	        clearInterval(timer);
 		}
 	});

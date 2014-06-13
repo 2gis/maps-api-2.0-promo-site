@@ -8,7 +8,8 @@ module.exports = function(app) {
 		FooterView = require('./footer')(app);
 	return Backbone.View.extend({
 		events: {
-			'click .intro': 'start'
+			'click .intro': 'start',
+			'scroll .intro': 'start'
 		},
 
 		template: {

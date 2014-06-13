@@ -88,7 +88,7 @@
         cursor: pointer;
         transition:
             margin-top 0.15s,
-            top 0.4s,
+            top 1.4s,
             opacity 0.1s;
 
         &:hover {
@@ -124,7 +124,7 @@
             }
         }
     .intro_is-started_true .intro__header {
-        top: 200%;
+        top: -200%;
         margin-top: 0;
         opacity: 0;
         }
@@ -690,21 +690,23 @@
             }
             .lightness-panel__progress-bar-fill {
                 float: left;
+                width: 0;
                 height: 100%;
                 background: transparent;
                 background-size: 30px 12px;
-                }
-            .lightness-panel__version_of_new-api .lightness-panel__progress-bar-fill {
-                width: 0;
-                background-color: #32aed7;
-                background-image: linear-gradient(135deg, #32aed7 25%, #6cc6e3 25%, #6cc6e3 60%, #32aed7 60%);
                 animation: progress-bar-fill 0.4s linear infinite;
                 }
+            .lightness-panel__version_of_new-api .lightness-panel__progress-bar-fill {
+                background-color: #32aed7;
+                background-image: linear-gradient(135deg, #32aed7 25%, #6cc6e3 25%, #6cc6e3 60%, #32aed7 60%);
+                }
             .lightness-panel__version_of_old-api .lightness-panel__progress-bar-fill {
-                width: 0;
                 background-color: #fdc854;
                 background-image: linear-gradient(135deg, #fdc854 25%, #fdd985 25%, #fdd985 60%, #fdc854 60%);
-                animation: progress-bar-fill 0.6s linear infinite;
+                animation-duration: 0.6s;
+                }
+            .lightness-panel__progress-bar-fill-is_loaded {
+                animation-play-state: paused;
                 }
 
             @keyframes progress-bar-fill {
