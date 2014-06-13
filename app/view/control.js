@@ -62,14 +62,18 @@ module.exports = function(app) {
 		},
 
 		setState: function(e) {
-			var el, state;
+			var $el, 
+				state,
+				activeClass = 'features__round-link-is-active_true';
 			if (e) {
 				e.preventDefault();
-				el = this.$(e.target);
+				$el = this.$(e.target);
 			} else {
-				el = this.$('.features__list-item_is-active_true .features__round-link:eq(0)');
+				$el = this.$('.features__list-item_is-active_true .features__round-link:eq(0)');
 			}
-			state = el.data('state') ? el.data('state') : 'page' + this.model.get('page');
+			this.$('.' + activeClass).removeClass(activeClass);
+			$el.addClass(activeClass);
+			state = $el.data('state') ? $el.data('state') : 'page' + this.model.get('page');
 			// console.log(state);
 			this.model.set('state', state);
 			return this;
