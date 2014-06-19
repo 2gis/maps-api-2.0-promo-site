@@ -1,6 +1,8 @@
 module.exports = {
-	'marker': require('./marker'),
-	'sun': require('./sun'),
+	'page1': require('./page1'),
 	'two-markers': require('./two-markers'),
-	'page1': require('./page1')
+	'sun': require('./sun'),
+	'marker': require('./marker'),
+	'dark-theme': require('./dark-theme'),
+	'light-theme': require('./light-theme')
 };

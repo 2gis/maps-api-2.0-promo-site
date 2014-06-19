@@ -39,8 +39,8 @@ gulp.task('watch', ['build'], function () {
 
     gulp.watch('./img/**/*.*', ['build-images']);
 
-    gulp.watch('./pages/*.*', ['build-templates']);
-    gulp.watch('./partials/*.*', ['build-templates']);
+    gulp.watch('./pages/*.*', ['build-templates', 'browserify']);
+    gulp.watch('./partials/*.*', ['build-templates', 'browserify']);
     gulp.watch('./app/**/*.*', ['browserify']);
 });
 

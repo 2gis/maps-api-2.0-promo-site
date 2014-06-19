@@ -74,7 +74,7 @@ module.exports = function(app) {
 			this.$('.' + activeClass).removeClass(activeClass);
 			$el.addClass(activeClass);
 			state = $el.data('state') ? $el.data('state') : 'page' + this.model.get('page');
-			// console.log(state);
+			console.log(state);
 			this.model.set('state', state);
 			return this;
 		},

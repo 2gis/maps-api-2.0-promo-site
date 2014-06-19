@@ -13,7 +13,7 @@ module.exports = function(app) {
 	            'geoclicker': false,
 	            'worldCopyJump': true,
 	            'locationControl': false,
-	            'zoomControl': false,
+	            'zoomControl': true,
 	            'fullscreenControl': false
 			};
         },
@@ -35,7 +35,10 @@ module.exports = function(app) {
 		},
 
 		render: function() {
-			this.model.set('map', new DG.Map('map', this.mapOpts()));
+			var map = new DG.Map('map', this.mapOpts());
+			map.zoomControl.setPosition('topright');
+			DG.control.fullscreen().addTo(map);
+			this.model.set('map', map);
 			return this;
 		}
 	});

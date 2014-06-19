@@ -917,8 +917,10 @@
             right: -6px;
             bottom: -6px;
             left: -6px;
+            box-shadow: inherit;
             }
-
+        
+        &.features__round-link-is-active_true:before,
         &:active:before {
             top: 0;
             right: 0;
@@ -956,8 +958,14 @@
             box-shadow:
                 0 2px 3px 0 rgba(0, 0, 0, 0.4),
                 0 2px 0 0 #393939 inset;
+            &:hover {
+                box-shadow:
+                    0 2px 3px 0 rgba(0, 0, 0, 0.4),
+                    0 2px 0 0 #393939 inset;
+                }
             }
-
+        
+        &.features__round-link-is-active_true:before,
         &:active:before {
             top: 0;
             right: 0;
