@@ -4,5 +4,6 @@ module.exports = {
 	'sun': require('./sun'),
 	'marker': require('./marker'),
 	'dark-theme': require('./dark-theme'),
-	'light-theme': require('./light-theme')
+	'light-theme': require('./light-theme'),
+	'reset': require('./reset')
 };

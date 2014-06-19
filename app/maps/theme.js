@@ -8,12 +8,18 @@ module.exports = function(map, skin) {
 		test = url.match(regex);
 
 	!map.geoclicker.enabled() && map.geoclicker.enable();
-
-	if (test) {
-		css.attr('href', url.replace(regex, '&skin=' + skin));
-	} else {
-		css.attr('href', url + '&skin=' + skin);
+	if (!map.controls.ruler) {
+	    map.controls.ruler = DG.control.ruler().addTo(map);
 	}
+
+	// map.closePopup(map.geoclicker._map._popup);
+	map.fire('click', {latlng: new DG.LatLng(54.98018731490755, 82.89802551269531)});
+
+	// map.on('click', function(e) {
+	// 	console.log(e.latlng);
+	// });
+
+	css.attr('href', test ? url.replace(regex, '&skin=' + skin) : (url + '&skin=' + skin));
 
 	return map;
 };

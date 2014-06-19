@@ -28,6 +28,7 @@ module.exports = function(app) {
 				var map = this.model.get('map'),
 					scene = maps[this.model.get('state')];
 
+				maps.reset(map);
 				scene && scene(map, app);
 
 				return this;
@@ -36,8 +37,11 @@ module.exports = function(app) {
 
 		render: function() {
 			var map = new DG.Map('map', this.mapOpts());
+			map.controls = {
+				fullscreen: DG.control.fullscreen()
+			};
 			map.zoomControl.setPosition('topright');
-			DG.control.fullscreen().addTo(map);
+			map.controls.fullscreen.addTo(map);
 			this.model.set('map', map);
 			return this;
 		}
