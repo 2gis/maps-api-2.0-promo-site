@@ -78,8 +78,8 @@ gulp.task('export', function () {
         gulp.src('./fonts/**/*.{eot,svg,ttf,woff}')
             .pipe(gulp.dest('./build/fonts/')),
 
-        gulp.src('./js/**/*.{js,json}')
-            .pipe(gulp.dest('./build/js/'))
+        gulp.src('./vendors/**/*')
+            .pipe(gulp.dest('./build/vendors/'))
     );
 });
 
