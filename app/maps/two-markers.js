@@ -1,4 +1,10 @@
 module.exports = function(map) {
+	map.setView([55.696351217825494, 37.6426394592835], 10);
+
+	if (map.clusters) {
+		return map.addLayer(map.clusters).fitBounds(map.clusters.getBounds());
+	}
+
 	DG.plugin([
 		'/vendors/Leaflet.markerCluster/leaflet.markercluster-src.js',
 		'/vendors/Leaflet.markerCluster/MarkerCluster.Default.css'
@@ -17,7 +23,7 @@ module.exports = function(map) {
 	}).then(function(data) {
 		var result = data.result.markers;
 
-		var markers = L.markerClusterGroup({showCoverageOnHover: false, chunkedLoading: true});
+		var markers = map.clusters = L.markerClusterGroup({showCoverageOnHover: false, chunkedLoading: true});
 
 		function populate() {
 			for (var i = 0; i < result.length; i++) {

@@ -42,6 +42,8 @@ gulp.task('watch', ['build'], function () {
     gulp.watch('./pages/*.*', ['build-templates', 'browserify']);
     gulp.watch('./partials/*.*', ['build-templates', 'browserify']);
     gulp.watch('./app/**/*.*', ['browserify']);
+    gulp.watch('./vendors/**/*', gulp.src('./vendors/**/*')
+        .pipe(gulp.dest('./build/vendors/')));
 });
 
 
