@@ -327,7 +327,7 @@ L.HeatLayer = L.Layer.extend({
             offset = this._map._getCenterOffset(e.center)._multiplyBy(-scale).subtract(this._map._getMapPanePos());
 
         // this._canvas.style[L.DomUtil.TRANSFORM] = L.DomUtil.getTranslateString(offset) + ' scale(' + scale + ')';
-        // L.DomUtil.setTransform(this._canvas, offset, scale);
+        L.DomUtil.setTransform(this._canvas, offset, scale);
     }
 });
 
