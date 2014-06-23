@@ -18,10 +18,10 @@ module.exports = function(app) {
 		},
 
 		toggle: function() {
-			var action = 'fade' + ((this.model.get('page') == 0 ||
-				this.model.get('page') == this.model.get('max')) ? 'Out' : 'In');
+			var action = ((this.model.get('page') == 0 ||
+				this.model.get('page') == this.model.get('max')) ? 'remove' : 'add') + 'Class';
 
-			this.$el[action]();
+			this.$('.features')[action]('features_is-visible_true');
 			return this;
 		},
 
