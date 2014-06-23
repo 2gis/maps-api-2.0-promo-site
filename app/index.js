@@ -1,4 +1,6 @@
-var app = {},
+var app = {
+		plugins: {}
+	},
 	State = require('./state')(app),
 	Router = require('./router')(app),
 	Backbone = require('backbone'),

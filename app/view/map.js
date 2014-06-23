@@ -37,6 +37,7 @@ module.exports = function(app) {
 
 		render: function() {
 			var map = new DG.Map('map', this.mapOpts());
+			maps.setup(map, app);
 			map.controls = {
 				fullscreen: DG.control.fullscreen()
 			};
