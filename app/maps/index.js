@@ -5,5 +5,6 @@ module.exports = {
 	'marker': require('./marker'),
 	'dark-theme': require('./dark-theme'),
 	'light-theme': require('./light-theme'),
+	'setup': require('./setup'),
 	'reset': require('./reset')
 };
