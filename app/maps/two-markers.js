@@ -24,8 +24,6 @@ module.exports = function(map, app) {
 
         map.addLayer(markers).fitBounds(markers.getBounds());
         
-    }, function(err) {
-        console.log(err);
     });
 
     return map;
