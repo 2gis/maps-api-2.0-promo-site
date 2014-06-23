@@ -15,7 +15,8 @@
     }
     .page__body {
         position: relative;
-        min-height: 100%;
+        min-width: 400px;
+        min-height: 400px;
         height: 100%;
         text-align: center;
         }
@@ -391,10 +392,14 @@
 
 .features {
     position: relative;
+    display: none;
     box-sizing: border-box;
     min-height: 100px;
     width: 400px;
     font: normal 14px/19px Arial, sans-serif;
+    }
+.features_is-visible_true {
+    display: block;
     }
     .features__arrow-link {
         position: absolute;
@@ -476,7 +481,6 @@
     .features__list {
         position: relative;
         left: 19px;
-        overflow: hidden;
         margin: 0 0 0 -38px;
         white-space: nowrap;
         }
@@ -493,8 +497,8 @@
             }
             .features__list-item-section {
                 position: relative;
-                left: 57px;
-                margin-left: -114px;
+                left: 56px;
+                margin-left: -112px;
                 padding: 0 57px;
                 border-top: 1px solid #585856;
 
@@ -539,6 +543,10 @@
                     padding-top: 0;
                     padding-bottom: 30px;
                     }
+                }
+            .features__list-item-section_is-bottom_true {
+                position: relative;
+                z-index: 3;
                 }
                 .features__header {
                     margin: 0 0 13px 0;
@@ -789,12 +797,12 @@
             .noRepeatableBg('callout');
             position: absolute;
             top: 2px;
-            left: -27px;
+            left: -26px;
             content: '';
             }
         }
     .pseudocard__route-instructions {
-        margin: 0 -8px 22px 0;
+        margin: 0 -10px 22px 0;
         text-decoration: line-through;
         }
     .pseudocard__try-it {
@@ -986,3 +994,7 @@
             .noRepeatableBg('broom-white');
             }
         }
+
+.dg-control-round {
+    text-align: left;
+    }
