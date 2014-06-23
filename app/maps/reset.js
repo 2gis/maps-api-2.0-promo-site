@@ -1,21 +1,25 @@
 module.exports = function(map) {
 
-	if (map.clusters && map.hasLayer(map.clusters)) {
-		map.removeLayer(map.clusters);
-	}
+    if (map.clusters && map.hasLayer(map.clusters)) {
+        map.removeLayer(map.clusters);
+    }
 
-	if (map.heat && map.hasLayer(map.heat)) {
-		map.removeLayer(map.heat);
-	}
+    if (map.heat && map.hasLayer(map.heat)) {
+        map.removeLayer(map.heat);
+    }
 
-	!map.geoclicker.enabled() && map.geoclicker.disable();
+    if (map.marker && map.hasLayer(map.marker)) {
+        map.removeLayer(map.marker);
+    }
 
-	if (map.controls.ruler) {
-	    map.removeControl(map.controls.ruler);
-	    map.controls.ruler = null;
-	}
+    !map.geoclicker.enabled() && map.geoclicker.disable();
 
-	map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
+    if (map.controls.ruler) {
+        map.removeControl(map.controls.ruler);
+        map.controls.ruler = null;
+    }
 
-	return map;
+    map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
+
+    return map;
 };
