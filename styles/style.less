@@ -1026,9 +1026,9 @@
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.7);
     }
     .tablet__display {
+        box-sizing: border-box;
         width: 491px;
         height: 655px;
-        box-sizing: border-box;
         border: 2px solid #fff;
         background-color: rgba(255, 120, 0, 0.8);
         box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.7) inset;
@@ -1036,44 +1036,48 @@
 
 
 .loupe {
-    border: 17px solid rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
+    position: relative;
+    display: none;
     width: 142px;
     height: 142px;
-    position: relative;
+    border: 17px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
     box-shadow:
         0 0 2px 2px #fff,
         0 0 2px 2px #fff inset;
     }
+.loupe_is-visible_true {
+    display: block;
+    }
     .loupe__glass {
         position: absolute;
-        border: 3px solid #393939;
-        width: 72px;
-        box-sizing: border-box;
         top: 0;
         bottom: 0;
+        box-sizing: border-box;
+        width: 72px;
+        border: 3px solid #393939;
 
         &:before {
-            content: '';
-            background-color: #393939;
             position: absolute;
             top: 50%;
+            margin-top: -2px;
             width: 5px;
             height: 3px;
-            margin-top: -2px;
+            background-color: #393939;
+            content: '';
             }
         }
     .loupe__glass_type_usual {
-        border-radius: 70px 0 0 70px;
         left: 0;
+        border-radius: 70px 0 0 70px;
 
         &:before {
             left: 0;
             }
         }
     .loupe__glass_type_retina {
-        border-radius: 0 70px 70px 0;
         right: 0;
+        border-radius: 0 70px 70px 0;
 
         &:before {
             right: 0;
