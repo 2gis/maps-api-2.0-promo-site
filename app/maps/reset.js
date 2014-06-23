@@ -1,8 +1,4 @@
-var setup = require('./device');
-
 module.exports = function(map, app) {
-    var device = setup(app);
-
     if (map.clusters && map.hasLayer(map.clusters)) {
         map.removeLayer(map.clusters);
     }
@@ -24,7 +20,7 @@ module.exports = function(map, app) {
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 
-    device.clean().disable();
+    app.device.clean().disable();
 
     return map;
 };

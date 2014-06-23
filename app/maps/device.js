@@ -1,8 +1,15 @@
-// var $ = require('jquery');
-
 module.exports = function(app) {
     var device = app.base.control.$('.device'),
-        display = device.children();
+        display = device.children(),
+        map = new DG.Map('mobile-map', {
+            'center': new DG.LatLng(54.980156831455, 82.897440725094),
+            'zoom': 13,
+            'geoclicker': false,
+            'worldCopyJump': true,
+            'locationControl': false,
+            'zoomControl': true,
+            'fullscreenControl': false
+        });
 
     return {
         enable: function() {
@@ -22,7 +29,9 @@ module.exports = function(app) {
             this.clean();
             device.addClass(type);
             display.addClass(type + '__display');
+            map.invalidateSize();
             return this;
-        }
+        },
+        map: map
     };
 };
