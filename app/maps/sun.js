@@ -1,7 +1,10 @@
 var data = require('./cafeHeat');
 
 module.exports = function(map) {
-  map.setView([55.696351217825494, 37.6426394592835]);
+  map.setView([55.755616894047215, 37.60070800781251]);
+  	map.on('click', function(e) {
+		console.log(e.latlng);
+	});
 
   if (map.heat) {
     return map.addLayer(map.heat);
