@@ -38,13 +38,13 @@ module.exports = function(map, app) {
 
 	Object.keys(Commits_JSAPI).forEach(
 		function(year){
-			
+
 			var commitMark = [];
 
 			addMarkersToGroup(year, commitMark);
 
 			//cLayers[year] = DG.layerGroup(commitMark).addTo(map);
-			
+
 		}
 	);
 
@@ -56,9 +56,9 @@ module.exports = function(map, app) {
 		if(Commits_JSAPI[year]){
 			Commits_JSAPI[year].forEach(
 				function(commit){
-					aMarkers.push( DG.marker([commit.latlng.lat,commit.latlng.lng], {icon: GitHubIcon}) );		
+					aMarkers.push( DG.marker([commit.latlng.lat,commit.latlng.lng], {icon: GitHubIcon}) );
 				}
-			);			
+			);
 		}
 	}
 
@@ -74,18 +74,11 @@ module.exports = function(map, app) {
 		map.removeLayer(cLayers[year]);
 	}
 
-    app.vent.on('showOpennes changeOpenes', function (data) {
-    	console.log(data.id);
-        //showEntrance(data.id);
-    });
-
     app.vent.on('changeOpennes', function (data) {
     	console.log(data.id);
-        //updateDescription(data.id);
     });
 
     app.base.control._currEl = $('.openness-examples__example-link_is-shown_true');
-    console.log(app.base.control._currEl);
 
 	return map;
 };
