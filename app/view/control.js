@@ -10,6 +10,8 @@ module.exports = function (app) {
             'click .features__round-link': 'setState',
             'click .openness-examples__list': 'handleSlider',
             'click .entrances-examples__list': 'handleSlider',
+            'click .openness-examples__play-pause-button': 'handleSlider',
+            'click .entrances-examples__play-pause-button': 'handleSlider',
             'click .pseudocard__find-entrance-link': '_showEntrance'
         },
 
@@ -96,7 +98,7 @@ module.exports = function (app) {
                 this._currId !== id && this._handleSliderPos(id, $el, type);
 
             } else if ($el.hasClass(type + '-examples__play-pause-button')) {
-                this._handleSliderStart();
+                this._handleSliderStart(type);
             }
         },
 
@@ -115,19 +117,24 @@ module.exports = function (app) {
             app.vent.trigger('change' + eventName, {id: this._currId});
         },
 
-        _handleSliderStart: function () {
+        _handleSliderStart: function (type) {
+            //console.log(this._currId + 1, this._currEl, this._currEl.parent().next().children());
             if (!this._interval) {
-                console.log(this._currId + 1, this._currEl, this._currEl.parent().next().children());
-                var id = this._currId + 1,
-                    el = this._currEl.parent().next().children();
+                console.log('start auto slide');
 
-                this._interval = window.setInterval(this._handleSliderPos.bind(this),
+                this._interval = window.setInterval(this._startSlider.bind(this),
                                             1500,
-                                            id,
-                                            el);
+                                            type);
             } else {
                 window.clearInterval(this._interval);
+                this._interval = undefined;
             }
+        },
+
+        _startSlider: function (type) {
+            var id = this._currId + 1,
+                el = this._currEl.parent().next().children();
+            this._handleSliderPos(id, el, type);
         },
 
         _showEntrance: function (e) {
