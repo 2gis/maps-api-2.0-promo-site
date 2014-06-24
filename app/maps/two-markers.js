@@ -14,7 +14,7 @@ module.exports = function(map, app) {
 
         function populate() {
             for (var i = 0; i < result.length; i++) {
-                var m = DG.marker([result[i].lat, result[i].lon]);
+                var m = L.marker([result[i].lat, result[i].lon]);
                 m.bindLabel(result[i].name_ex.primary);
                 markers.addLayer(m);
             }
@@ -23,7 +23,7 @@ module.exports = function(map, app) {
         populate();
 
         map.addLayer(markers).fitBounds(markers.getBounds());
-        
+
     });
 
     return map;

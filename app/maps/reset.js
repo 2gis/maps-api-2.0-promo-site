@@ -1,4 +1,4 @@
-module.exports = function(map) {
+module.exports = function(map, app) {
 
     if (map.clusters && map.hasLayer(map.clusters)) {
         map.removeLayer(map.clusters);
@@ -18,6 +18,10 @@ module.exports = function(map) {
         map.removeControl(map.controls.ruler);
         map.controls.ruler = null;
     }
+
+    //entrance
+   /* app.off('showEntrance');
+    app.off('changeEntrance');*/
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 

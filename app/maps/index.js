@@ -1,10 +1,11 @@
 module.exports = {
     'page1': require('./page1'),
-    'two-markers': require('./two-markers'),
-    'sun': require('./sun'),
-    'marker': require('./marker'),
-    'dark-theme': require('./dark-theme'),
-    'light-theme': require('./light-theme'),
-    'setup': require('./setup'),
-    'reset': require('./reset')
+	'page4': require('./page4'),
+	'two-markers': require('./two-markers'),
+	'sun': require('./sun'),
+	'marker': require('./marker'),
+	'dark-theme': require('./dark-theme'),
+	'light-theme': require('./light-theme'),
+	'setup': require('./setup'),
+	'reset': require('./reset')
 };

@@ -28,7 +28,7 @@ module.exports = function(app) {
 				var map = this.model.get('map'),
 					scene = maps[this.model.get('state')];
 
-				maps.reset(map);
+				maps.reset(map, app);
 				scene && scene(map, app);
 
 				return this;

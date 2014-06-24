@@ -6,7 +6,7 @@ module.exports = function(map, app) {
     }
 
     app.plugins.heat.then(function() {
-        map.heat = DG.heatLayer(data, {radius: 25}).addTo(map);
+        map.heat = L.heatLayer(data, {radius: 25}).addTo(map);
     });
 
     return map;
