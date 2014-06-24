@@ -25,5 +25,7 @@ module.exports = function(map, app) {
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 
+    app.device.clean().disable();
+
     return map;
 };
