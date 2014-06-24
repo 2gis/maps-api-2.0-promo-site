@@ -888,6 +888,67 @@
                 color: #000;
                 }
 
+
+.openness-examples {
+    padding: 19px 0 0 27px;
+    }
+    .openness-examples__play-pause-button {
+        position: relative;
+        display: inline-block;
+        margin: 0 20px 0 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #fff;
+        background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12));
+        box-shadow:
+            0 2px 2px 0 rgba(0, 0, 0, 0.3),
+            0 2px 0 0 #fff inset;
+        vertical-align: middle;
+
+        &:after {
+            .noRepeatableBg('play');
+            position: absolute;
+            top: 1px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            content: '';
+            }
+        }
+    .openness-examples__play-pause-button:active,
+    .openness-examples__play-pause-button_is-played_true {
+        background-image: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.15));
+        box-shadow:
+            0 -2px 2px 0 rgba(0, 0, 0, 0.2),
+            0 2px 4px 1px rgba(0, 0, 0, 0.2) inset;
+
+        &:after {
+            .noRepeatableBg('pause');
+            content: '';
+            }
+        }
+    .openness-examples__list {
+        display: inline-block;
+        }
+        .openness-examples__item {
+            display: inline-block;
+            margin-right: 23px;
+            }
+            .openness-examples__example-link {
+                padding: 4px 9px;
+                border-radius: 4px;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+                }
+            .openness-examples__example-link_is-shown_true {
+                background-color: #fdc854;
+                color: #000;
+                }
+
+
 .themes-switcher {
     margin-bottom: -19px;
     padding: 26px 62px;
