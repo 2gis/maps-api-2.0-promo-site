@@ -8,7 +8,8 @@ module.exports = function (app) {
             'click .features__arrow-link_to_left': 'prev',
             'click .features__table-of-contents-item': 'goPage',
             'click .features__round-link': 'setState',
-            'click .entrances-examples': 'handleSlider',
+            'click .openness-examples__list': 'handleSlider',
+            'click .entrances-examples__list': 'handleSlider',
             'click .pseudocard__find-entrance-link': '_showEntrance'
         },
 
@@ -17,7 +18,6 @@ module.exports = function (app) {
         initialize: function () {
             this.model.on('change:page', this.update, this);
             this._currId = 0;
-            this._currEl = 222;
 
             this.render().toggle();
         },
@@ -26,7 +26,6 @@ module.exports = function (app) {
             var action = ((this.model.get('page') == 0 ||
                 this.model.get('page') == this.model.get('max')) ? 'remove' : 'add') + 'Class';
 
-            //this._currEl = this.$('.entrances-examples__example-link_is-shown_true');
             this.$('.features')[action]('features_is-visible_true');
             return this;
         },
@@ -87,21 +86,25 @@ module.exports = function (app) {
 
         // slider
         handleSlider: function (e) {
-            var $el = this.$(e.target);
+            var type = e.currentTarget.className.split('-')[0],
+                $el = this.$(e.target);
+
             e.preventDefault();
 
-            if ($el.hasClass('entrances-examples__example-link')) {
+            if ($el.hasClass(type + '-examples__example-link')) {
                 var id = $el.data('id');
+                this._currId !== id && this._handleSliderPos(id, $el, type);
 
-                this._currId != id && this._handleSliderPos(id, $el);
-            } else if ($el.hasClass('entrances-examples__play-pause-button')) {
+            } else if ($el.hasClass(type + '-examples__play-pause-button')) {
                 this._handleSliderStart();
             }
         },
 
-        _handleSliderPos: function (id, el) {
+        _handleSliderPos: function (id, el, type) {
             // console.log('CHANGE STATE', id, this._currId, this._currEl);
-            var activeClass = 'entrances-examples__example-link_is-shown_true';
+            var activeClass = type + '-examples__example-link_is-shown_true',
+                l = type.length - 1,
+                eventName = type.charAt(0).toUpperCase() + type.slice(1, l);
 
             this._currEl.removeClass(activeClass);
             el.addClass(activeClass);
@@ -109,7 +112,7 @@ module.exports = function (app) {
             this._currId = id;
             this._currEl = el;
 
-            app.vent.trigger('changeEntrance', {id: this._currId});
+            app.vent.trigger('change' + eventName, {id: this._currId});
         },
 
         _handleSliderStart: function () {
@@ -122,7 +125,6 @@ module.exports = function (app) {
                                             1500,
                                             id,
                                             el);
-
             } else {
                 window.clearInterval(this._interval);
             }
