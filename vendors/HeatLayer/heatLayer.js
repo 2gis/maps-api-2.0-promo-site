@@ -276,7 +276,7 @@ L.HeatLayer = L.Layer.extend({
             offsetY = panePos.y % cellSize,
             i, len, p, cell, x, y, j, len2, k;
 
-        console.time('process');
+        // console.time('process');
         for (i = 0, len = this._latlngs.length; i < len; i++) {
             if (bounds.contains(this._latlngs[i])) {
                 p = this._map.latLngToContainerPoint(this._latlngs[i]);
@@ -313,11 +313,11 @@ L.HeatLayer = L.Layer.extend({
                 }
             }
         }
-        console.timeEnd('process');
+        // console.timeEnd('process');
 
-        console.time('draw ' + data.length);
+        // console.time('draw ' + data.length);
         this._heat.data(data).draw();
-        console.timeEnd('draw ' + data.length);
+        // console.timeEnd('draw ' + data.length);
 
         this._frame = null;
     },

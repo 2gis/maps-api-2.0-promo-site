@@ -28,7 +28,7 @@ module.exports = function(app) {
 				var map = this.model.get('map'),
 					scene = maps[this.model.get('state')];
 
-				maps.reset(map);
+				maps.reset(map, app);
 				scene && scene(map, app);
 
 				return this;
@@ -37,6 +37,7 @@ module.exports = function(app) {
 
 		render: function() {
 			var map = new DG.Map('map', this.mapOpts());
+			maps.setup(map, app);
 			map.controls = {
 				fullscreen: DG.control.fullscreen()
 			};

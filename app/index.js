@@ -1,12 +1,17 @@
-var app = {},
+var app = {
+		plugins: {}
+	},
 	State = require('./state')(app),
 	Router = require('./router')(app),
 	Backbone = require('backbone'),
+    _ = require('underscore'),
 	$ = require('jquery');
 
 app.root = '/';
 app.state = new State();
-$(document).ready(function() {
+app.vent = _.extend({}, Backbone.Events);
+
+$(document).ready(function () {
 	app.router = new Router();
 	Backbone.history.start({ pushState: true, root: app.root });
 });

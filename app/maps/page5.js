@@ -1,4 +1,8 @@
+var $ = require('jquery');
 module.exports = function(map, app) {
+
+
+
 	// console.log(app.base.footer);
 	var Commits_JSAPI = {
 		"2010" : [
@@ -69,16 +73,19 @@ module.exports = function(map, app) {
 		if ( !cLayers[year] || !Commits_JSAPI[year] ) { return; }
 		map.removeLayer(cLayers[year]);
 	}
-	
-	showCommits("2013");
 
-	hideCommits("2010");
-	hideCommits("2011");
-	hideCommits("2012");
-	hideCommits("2013");
-	hideCommits("2014");
+    app.vent.on('showOpennes changeOpenes', function (data) {
+    	console.log(data.id);
+        //showEntrance(data.id);
+    });
 
-	showCommits("2011");
+    app.vent.on('changeOpennes', function (data) {
+    	console.log(data.id);
+        //updateDescription(data.id);
+    });
+
+    app.base.control._currEl = $('.openness-examples__example-link_is-shown_true');
+    console.log(app.base.control._currEl);
 
 	return map;
 };
