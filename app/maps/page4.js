@@ -1,13 +1,17 @@
-var data = require('./entrances'),
-    $ = require('jquery');
+var data = require('./entrances');
 
 module.exports = function(map, app) {
     var entrances = {},
-        titleNode = $('.pseudocard__header'),
-        addressNode = $('.pseudocard__address'),
-        textNode = $('.pseudocard__route-instructions');
+        titleNode = app.base.control.$('.pseudocard__header'),
+        addressNode = app.base.control.$('.pseudocard__address'),
+        textNode = app.base.control.$('.pseudocard__route-instructions');
 
-    function showEntrance(id) {
+    app.state.on('change:sliderId', showEntrance);
+
+    function showEntrance() {
+        var id = app.state.get('sliderId');
+        updateDescription(id);
+
         if (!entrances[id]) {
             entrances[id] = new DG.Entrance({
                 'vectors': data[id].entrance
@@ -24,17 +28,8 @@ module.exports = function(map, app) {
         textNode.html(description.text);
     }
 
-    app.on('showEntrances changeEntrances', function (data) {
-        showEntrance(data.id);
-    });
-
-    app.on('changeEntrances', function (data) {
-        updateDescription(data.id);
-    });
-
     // init state
-    showEntrance(0);
-    updateDescription(0);
+    showEntrance();
 
     return map;
 };
