@@ -6,7 +6,7 @@ module.exports = function() {
 		defaults: {
 			max: 7,
 			pages: [
-				'index',
+				'',
 				'lightness',
 				'modularity',
 				'themes',
@@ -14,7 +14,9 @@ module.exports = function() {
 				'openness',
 				'mobile',
 				'start'
-			]
+			],
+			sliderId: 0,
+			sliderEl: {},
 		},
 
 		validate: function(attrs, options) {

@@ -10,14 +10,16 @@ module.exports = function (app) {
             'click .features__round-link': 'setState',
             'click .openness-examples__list': 'handleSlider',
             'click .entrances-examples__list': 'handleSlider',
-            'click .pseudocard__find-entrance-link': '_showEntrance'
+            'click .openness-examples__play-pause-button': 'handleSliderStart',
+            'click .entrances-examples__play-pause-button': 'handleSliderStart',
+            'click .pseudocard__find-entrance-link': 'showEntrance'
         },
 
         template: require('../../partials/header'),
 
         initialize: function () {
             this.model.on('change:page', this.update, this);
-            this._currId = 0;
+            this.model.on('change:sliderId', this._updateSlider, this);
 
             this.render().toggle();
         },
@@ -34,13 +36,21 @@ module.exports = function (app) {
             var pins = 'features__table-of-contents-item',
                 tabs = 'features__list-item',
                 active = '_is-active_true',
+                highlight = '-examples__example-link_is-shown_true',
+                pageName = this.model.getPageName(),
                 item = ':eq(' + (this.model.get('page') - 1) + ')';
+
+            var el = this.$('.' + pageName + '-examples__list').children().first().children();
+            el.addClass(pageName + highlight);
+
+            this.model.set({sliderEl: el});
 
             this.$('.' + pins + active).removeClass(pins + active);
             this.$('.' + tabs + active).removeClass(tabs + active);
 
             this.$('.' + pins + item).addClass(pins + active);
             this.$('.' + tabs + item).addClass(tabs + active);
+
             return this;
         },
 
@@ -51,12 +61,14 @@ module.exports = function (app) {
 
         next: function (e) {
             e.preventDefault();
+            this._resetSlider();
             this.model.upPage();
             return this;
         },
 
         prev: function (e) {
             e.preventDefault();
+            this._resetSlider();
             this.model.downPage();
             return this;
         },
@@ -87,52 +99,80 @@ module.exports = function (app) {
         // slider
         handleSlider: function (e) {
             var type = e.currentTarget.className.split('-')[0],
-                $el = this.$(e.target);
+                el = this.$(e.target),
+                id = el.data('id');
 
             e.preventDefault();
 
-            if ($el.hasClass(type + '-examples__example-link')) {
-                var id = $el.data('id');
-                this._currId !== id && this._handleSliderPos(id, $el, type);
+            if (el.hasClass(type + '-examples__example-link') &&
+                                this.model.get('sliderId') !== id) {
 
-            } else if ($el.hasClass(type + '-examples__play-pause-button')) {
-                this._handleSliderStart();
+                this._handleSliderData(id, el);
             }
         },
 
-        _handleSliderPos: function (id, el, type) {
-            // console.log('CHANGE STATE', id, this._currId, this._currEl);
-            var activeClass = type + '-examples__example-link_is-shown_true',
-                l = type.length - 1,
-                eventName = type.charAt(0).toUpperCase() + type.slice(1, l);
+        handleSliderStart: function (e) {
+            var playClass = '-examples__play-pause-button_is-played_true',
+                type = e.currentTarget.className.split('-')[0],
+                el = this.$(e.target);
 
-            this._currEl.removeClass(activeClass);
-            el.addClass(activeClass);
-
-            this._currId = id;
-            this._currEl = el;
-
-            app.vent.trigger('change' + eventName, {id: this._currId});
-        },
-
-        _handleSliderStart: function () {
             if (!this._interval) {
-                console.log(this._currId + 1, this._currEl, this._currEl.parent().next().children());
-                var id = this._currId + 1,
-                    el = this._currEl.parent().next().children();
-
-                this._interval = window.setInterval(this._handleSliderPos.bind(this),
-                                            1500,
-                                            id,
-                                            el);
+                this._interval = window.setInterval(this._runSlider.bind(this),
+                                            2500);
+                el.addClass(type + playClass);
             } else {
-                window.clearInterval(this._interval);
+                el.removeClass(type + playClass);
+                this._stopSlider();
             }
         },
 
-        _showEntrance: function (e) {
+        showEntrance: function (e) {
             e.preventDefault();
-            app.vent.trigger('showEntrance', {id: this._currId});
+            app.trigger('showEntrances', {id: this.model.get('sliderId')});
+        },
+
+        _updateSlider: function () {
+            var activeClass = this.model.getPageName() + '-examples__example-link_is-shown_true',
+                el = this.model.get('sliderEl');
+
+            this.model.previous('sliderEl').removeClass(activeClass);
+            el && el.addClass(activeClass);
+        },
+
+        _handleSliderData: function (id, el) {
+            var type = this.model.getPageName(),
+                eventName = type.charAt(0).toUpperCase() + type.slice(1);
+
+            this.model.set({sliderEl: el, sliderId: id});
+            app.trigger('change' + eventName, {id: id});
+        },
+
+        _runSlider: function () {
+            var id = this.model.get('sliderId') + 1,
+                el = this.model.get('sliderEl').parent().next().children();
+
+            if (!el.length) {
+                el = this.model.get('sliderEl').parent().siblings().first().children();
+                id = 0;
+            }
+
+            this._handleSliderData(id, el);
+        },
+
+        _stopSlider: function () {
+            window.clearInterval(this._interval);
+            this._interval = undefined;
+        },
+
+        _resetSlider: function () {
+            this.model.set({'sliderId': 0, sliderEl: undefined});
+
+            if (this._interval) {
+                var activeClass = this.model.getPageName() + '-examples__play-pause-button_is-played_true';
+
+                this.$('.' + activeClass).removeClass(activeClass);
+                this._stopSlider();
+            }
         },
 
         render: function () {

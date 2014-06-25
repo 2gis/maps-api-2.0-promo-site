@@ -2,6 +2,8 @@ var $ = require('jquery');
 var Commits = require('./commits');
 module.exports = function(map, app) {
 
+
+
 	// console.log(app.base.footer);
 
 	var GitHubIcon = DG.icon({
@@ -60,27 +62,9 @@ module.exports = function(map, app) {
 		 map.removeLayer(cLayers[year]);
 	}
 
-    app.vent.on('changeOpennes', function (data) {
-    	showCommits(data.id);
+    app.on('changeOpenness', function (data) {
+    	console.log(data.id);
     });
-
-    app.base.control._currEl = $('.openness-examples__example-link_is-shown_true');
-
-    console.log(app.base.control);
-
-    commits['2010'] = [];
-
-    addMarkersToGroup('2010', commits['2010']);
-
-    cLayers['2010'] = DG.layerGroup(commits['2010']).addTo(map);
-
-    autoSwitch = true;
-
-    setupSwitcher();
-
-    showCommits("2010");
-
-    
 
 	return map;
 };

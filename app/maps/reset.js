@@ -19,9 +19,7 @@ module.exports = function(map, app) {
         map.controls.ruler = null;
     }
 
-    //entrance
-   /* app.off('showEntrance');
-    app.off('changeEntrance');*/
+    //slider
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 
