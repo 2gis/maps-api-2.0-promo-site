@@ -17,6 +17,7 @@ module.exports = function(map, app) {
                 'vectors': data[id].entrance
             });
         }
+        map.entrance = entrances[id];
         entrances[id].addTo(map).show();
     }
 
