@@ -10,8 +10,8 @@ module.exports = function (app) {
             'click .features__round-link': 'setState',
             'click .openness-examples__list': 'handleSlider',
             'click .entrances-examples__list': 'handleSlider',
-            'click .openness-examples__play-pause-button': 'handleSlider',
-            'click .entrances-examples__play-pause-button': 'handleSlider',
+            'click .openness-examples__play-pause-button': 'handleSliderStart',
+            'click .entrances-examples__play-pause-button': 'handleSliderStart',
             'click .pseudocard__find-entrance-link': '_showEntrance'
         },
 
@@ -19,6 +19,8 @@ module.exports = function (app) {
 
         initialize: function () {
             this.model.on('change:page', this.update, this);
+            this.model.on('change:sliderId', this._updateSlider, this);
+
             this.render().toggle();
         },
 
@@ -34,13 +36,14 @@ module.exports = function (app) {
             var pins = 'features__table-of-contents-item',
                 tabs = 'features__list-item',
                 active = '_is-active_true',
-                pageNum = this.model.get('page'),
-                pageName = this.model.get('pages')[pageNum],
-                item = ':eq(' + (pageNum - 1) + ')';
+                highlight = '-examples__example-link_is-shown_true',
+                pageName = this.model.getPageName(),
+                item = ':eq(' + (this.model.get('page') - 1) + ')';
 
-            // initSlider
             var el = this.$('.' + pageName + '-examples__list').children().first().children();
-            this.model.set({sliderEl: el, sliderId: 0});
+            el.addClass(pageName + highlight);
+
+            this.model.set({sliderEl: el});
 
             this.$('.' + pins + active).removeClass(pins + active);
             this.$('.' + tabs + active).removeClass(tabs + active);
@@ -58,12 +61,14 @@ module.exports = function (app) {
 
         next: function (e) {
             e.preventDefault();
+            this._resetSlider();
             this.model.upPage();
             return this;
         },
 
         prev: function (e) {
             e.preventDefault();
+            this._resetSlider();
             this.model.downPage();
             return this;
         },
@@ -92,42 +97,30 @@ module.exports = function (app) {
         },
 
         // slider
+
         handleSlider: function (e) {
             var type = e.currentTarget.className.split('-')[0],
-                $el = this.$(e.target);
+                el = this.$(e.target),
+                id = el.data('id');
 
             e.preventDefault();
 
-            if ($el.hasClass(type + '-examples__example-link')) {
-                var id = $el.data('id');
-                this.model.get('sliderId') !== id && this._handleSliderItem(id, $el, type);
+            if (el.hasClass(type + '-examples__example-link') &&
+                this.model.get('sliderId') !== id) {
 
-            } else if ($el.hasClass(type + '-examples__play-pause-button')) {
-                this._handleSliderBtn($el, type);
+                this._handleSliderData(id, el);
             }
         },
 
-        _handleSliderItem: function (id, el, type) {
-            var activeClass = type + '-examples__example-link_is-shown_true',
-                eventName = type.charAt(0).toUpperCase() + type.slice(1);
-
-            this.model.get('sliderEl').removeClass(activeClass);
-            el.addClass(activeClass);
-
-            this.model.set({sliderEl: el, sliderId: id});
-
-            app.vent.trigger('change' + eventName, {id: this.model.get('sliderId')});
-        },
-
-        _handleSliderBtn: function (el, type) {
-            var playClass = '-examples__play-pause-button_is-played_true';
+        handleSliderStart: function (e) {
+            var playClass = '-examples__play-pause-button_is-played_true',
+                type = e.currentTarget.className.split('-')[0],
+                el = this.$(e.target);
 
             if (!this._interval) {
-                this._interval = window.setInterval(this._stopRunSlider.bind(this),
-                                            2500,
-                                            type);
+                this._interval = window.setInterval(this._runSlider.bind(this),
+                                            2500);
                 el.addClass(type + playClass);
-
             } else {
                 el.removeClass(type + playClass);
 
@@ -136,22 +129,51 @@ module.exports = function (app) {
             }
         },
 
-        _stopRunSlider: function (type) {
+        _updateSlider: function () {
+            var activeClass = this.model.getPageName() + '-examples__example-link_is-shown_true',
+                el = this.model.get('sliderEl');
+
+            this.$('.' + activeClass).removeClass(activeClass);
+            el && el.addClass(activeClass);
+        },
+
+        _handleSliderData: function (id, el) {
+            var type = this.model.getPageName(),
+                eventName = type.charAt(0).toUpperCase() + type.slice(1);
+
+            this.model.set({sliderEl: el, sliderId: id});
+            app.vent.trigger('change' + eventName, {id: id});
+        },
+
+
+        _runSlider: function () {
             var id = this.model.get('sliderId') + 1,
-                 el = this.model.get('sliderEl').parent().next().children();
+                el = this.model.get('sliderEl').parent().next().children();
 
             if (!el.length) {
                 el = this.model.get('sliderEl').parent().siblings().first().children();
                 id = 0;
-                this.model.set({'sliderId': id});
             }
 
-            this._handleSliderItem(id, el, type);
+            this._handleSliderData(id, el);
         },
 
         _showEntrance: function (e) {
             e.preventDefault();
             app.vent.trigger('showEntrances', {id: this.model.get('sliderId')});
+        },
+
+        _resetSlider: function () {
+            this.model.set({'sliderId': 0, sliderEl: undefined});
+
+
+            if (this._interval) {
+                var activeClass = this.model.getPageName() + '-examples__play-pause-button_is-played_true';
+                this.$('.' + activeClass).removeClass(activeClass);
+
+                window.clearInterval(this._interval);
+                this._interval = undefined;
+            }
         },
 
         render: function () {

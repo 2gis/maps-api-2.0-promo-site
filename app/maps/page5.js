@@ -78,7 +78,5 @@ module.exports = function(map, app) {
     	console.log(data.id);
     });
 
-    app.base.control._currEl = $('.openness-examples__example-link_is-shown_true');
-
 	return map;
 };
