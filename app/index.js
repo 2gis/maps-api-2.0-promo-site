@@ -9,7 +9,7 @@ var app = {
 
 app.root = '/';
 app.state = new State();
-app.vent = _.extend({}, Backbone.Events);
+app = _.extend(app, Backbone.Events);
 
 $(document).ready(function () {
 	app.router = new Router();

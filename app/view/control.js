@@ -12,7 +12,7 @@ module.exports = function (app) {
             'click .entrances-examples__list': 'handleSlider',
             'click .openness-examples__play-pause-button': 'handleSliderStart',
             'click .entrances-examples__play-pause-button': 'handleSliderStart',
-            'click .pseudocard__find-entrance-link': '_showEntrance'
+            'click .pseudocard__find-entrance-link': 'showEntrance'
         },
 
         template: require('../../partials/header'),
@@ -97,7 +97,6 @@ module.exports = function (app) {
         },
 
         // slider
-
         handleSlider: function (e) {
             var type = e.currentTarget.className.split('-')[0],
                 el = this.$(e.target),
@@ -106,7 +105,7 @@ module.exports = function (app) {
             e.preventDefault();
 
             if (el.hasClass(type + '-examples__example-link') &&
-                this.model.get('sliderId') !== id) {
+                                this.model.get('sliderId') !== id) {
 
                 this._handleSliderData(id, el);
             }
@@ -123,17 +122,20 @@ module.exports = function (app) {
                 el.addClass(type + playClass);
             } else {
                 el.removeClass(type + playClass);
-
-                window.clearInterval(this._interval);
-                this._interval = undefined;
+                this._stopSlider();
             }
+        },
+
+        showEntrance: function (e) {
+            e.preventDefault();
+            app.trigger('showEntrances', {id: this.model.get('sliderId')});
         },
 
         _updateSlider: function () {
             var activeClass = this.model.getPageName() + '-examples__example-link_is-shown_true',
                 el = this.model.get('sliderEl');
 
-            this.$('.' + activeClass).removeClass(activeClass);
+            this.model.previous('sliderEl').removeClass(activeClass);
             el && el.addClass(activeClass);
         },
 
@@ -142,9 +144,8 @@ module.exports = function (app) {
                 eventName = type.charAt(0).toUpperCase() + type.slice(1);
 
             this.model.set({sliderEl: el, sliderId: id});
-            app.vent.trigger('change' + eventName, {id: id});
+            app.trigger('change' + eventName, {id: id});
         },
-
 
         _runSlider: function () {
             var id = this.model.get('sliderId') + 1,
@@ -158,21 +159,19 @@ module.exports = function (app) {
             this._handleSliderData(id, el);
         },
 
-        _showEntrance: function (e) {
-            e.preventDefault();
-            app.vent.trigger('showEntrances', {id: this.model.get('sliderId')});
+        _stopSlider: function () {
+            window.clearInterval(this._interval);
+            this._interval = undefined;
         },
 
         _resetSlider: function () {
             this.model.set({'sliderId': 0, sliderEl: undefined});
 
-
             if (this._interval) {
                 var activeClass = this.model.getPageName() + '-examples__play-pause-button_is-played_true';
-                this.$('.' + activeClass).removeClass(activeClass);
 
-                window.clearInterval(this._interval);
-                this._interval = undefined;
+                this.$('.' + activeClass).removeClass(activeClass);
+                this._stopSlider();
             }
         },
 

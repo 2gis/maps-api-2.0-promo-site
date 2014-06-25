@@ -24,11 +24,11 @@ module.exports = function(map, app) {
         textNode.html(description.text);
     }
 
-    app.vent.on('showEntrances changeEntrances', function (data) {
+    app.on('showEntrances changeEntrances', function (data) {
         showEntrance(data.id);
     });
 
-    app.vent.on('changeEntrances', function (data) {
+    app.on('changeEntrances', function (data) {
         updateDescription(data.id);
     });
 
