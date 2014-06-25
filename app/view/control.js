@@ -19,7 +19,7 @@ module.exports = function (app) {
 
         initialize: function () {
             this.model.on('change:page', this.update, this);
-            this.model.on('change:sliderId', this._updateSlider, this);
+            this.model.on('change:sliderEl', this._updateSlider, this);
 
             this.render().toggle();
         },
@@ -133,7 +133,7 @@ module.exports = function (app) {
             var activeClass = this.model.getPageName() + '-examples__example-link_is-shown_true',
                 $el = this.model.get('sliderEl');
 
-            this.model.previous('sliderEl').removeClass(activeClass);
+            this.$('.' + activeClass).removeClass(activeClass);
             $el && $el.addClass(activeClass);
         },
 

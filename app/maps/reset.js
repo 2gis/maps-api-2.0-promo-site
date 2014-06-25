@@ -20,6 +20,7 @@ module.exports = function(map, app) {
     }
 
     //slider
+    app.state.off('change:sliderId');
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 
