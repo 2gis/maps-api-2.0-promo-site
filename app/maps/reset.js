@@ -19,9 +19,13 @@ module.exports = function(map, app) {
         map.controls.ruler = null;
     }
 
-    //entrance
+    //slider
    /* app.off('showEntrance');
     app.off('changeEntrance');*/
+    if (app.base.control._interval) {
+        window.clearInterval(app.base.controls._interval);
+        app.base.control._interval = undefined;
+    }
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 

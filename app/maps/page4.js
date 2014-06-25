@@ -24,17 +24,21 @@ module.exports = function(map, app) {
         textNode.html(description.text);
     }
 
-    app.vent.on('showEntrance changeEntrance', function (data) {
+    app.vent.on('showEntrances changeEntrances', function (data) {
         showEntrance(data.id);
     });
 
-    app.vent.on('changeEntrance', function (data) {
+    app.vent.on('changeEntrances', function (data) {
         updateDescription(data.id);
     });
 
     // init state
+    console.log('init arrow');
     showEntrance(0);
-    app.base.control._currEl = $('.entrances-examples__example-link_is-shown_true');
+    updateDescription(0);
+    /*$('.entrances-examples__example-link_is-shown_true').trigger('click');
+    app.base.control._currEl = $('.entrances-examples__list').children().first().children();
+    app.base.control._currEl.trigger('click');*/
 
     return map;
 };

@@ -19,8 +19,6 @@ module.exports = function (app) {
 
         initialize: function () {
             this.model.on('change:page', this.update, this);
-            this._currId = 0;
-
             this.render().toggle();
         },
 
@@ -36,13 +34,20 @@ module.exports = function (app) {
             var pins = 'features__table-of-contents-item',
                 tabs = 'features__list-item',
                 active = '_is-active_true',
-                item = ':eq(' + (this.model.get('page') - 1) + ')';
+                pageNum = this.model.get('page'),
+                pageName = this.model.get('pages')[pageNum],
+                item = ':eq(' + (pageNum - 1) + ')';
+
+            // initSlider
+            var el = this.$('.' + pageName + '-examples__list').children().first().children();
+            this.model.set({sliderEl: el, sliderId: 0});
 
             this.$('.' + pins + active).removeClass(pins + active);
             this.$('.' + tabs + active).removeClass(tabs + active);
 
             this.$('.' + pins + item).addClass(pins + active);
             this.$('.' + tabs + item).addClass(tabs + active);
+
             return this;
         },
 
@@ -95,51 +100,58 @@ module.exports = function (app) {
 
             if ($el.hasClass(type + '-examples__example-link')) {
                 var id = $el.data('id');
-                this._currId !== id && this._handleSliderPos(id, $el, type);
+                this.model.get('sliderId') !== id && this._handleSliderItem(id, $el, type);
 
             } else if ($el.hasClass(type + '-examples__play-pause-button')) {
-                this._handleSliderStart(type);
+                this._handleSliderBtn($el, type);
             }
         },
 
-        _handleSliderPos: function (id, el, type) {
-            // console.log('CHANGE STATE', id, this._currId, this._currEl);
+        _handleSliderItem: function (id, el, type) {
             var activeClass = type + '-examples__example-link_is-shown_true',
-                l = type.length - 1,
-                eventName = type.charAt(0).toUpperCase() + type.slice(1, l);
+                eventName = type.charAt(0).toUpperCase() + type.slice(1);
 
-            this._currEl.removeClass(activeClass);
+            this.model.get('sliderEl').removeClass(activeClass);
             el.addClass(activeClass);
 
-            this._currId = id;
-            this._currEl = el;
+            this.model.set({sliderEl: el, sliderId: id});
 
-            app.vent.trigger('change' + eventName, {id: this._currId});
+            app.vent.trigger('change' + eventName, {id: this.model.get('sliderId')});
         },
 
-        _handleSliderStart: function (type) {
-            //console.log(this._currId + 1, this._currEl, this._currEl.parent().next().children());
-            if (!this._interval) {
-                console.log('start auto slide');
+        _handleSliderBtn: function (el, type) {
+            var playClass = '-examples__play-pause-button_is-played_true';
 
-                this._interval = window.setInterval(this._startSlider.bind(this),
-                                            1500,
+            if (!this._interval) {
+                this._interval = window.setInterval(this._stopRunSlider.bind(this),
+                                            2500,
                                             type);
+                el.addClass(type + playClass);
+
             } else {
+                el.removeClass(type + playClass);
+
                 window.clearInterval(this._interval);
                 this._interval = undefined;
             }
         },
 
-        _startSlider: function (type) {
-            var id = this._currId + 1,
-                el = this._currEl.parent().next().children();
-            this._handleSliderPos(id, el, type);
+        _stopRunSlider: function (type) {
+            var id = this.model.get('sliderId') + 1,
+                 el = this.model.get('sliderEl').parent().next().children();
+
+            if (!el.length) {
+                el = this.model.get('sliderEl').parent().siblings().first().children();
+                id = 0;
+                this.model.set({'sliderId': id});
+            }
+
+            this._handleSliderItem(id, el, type);
         },
 
         _showEntrance: function (e) {
             e.preventDefault();
-            app.vent.trigger('showEntrance', {id: this._currId});
+            app.vent.trigger('showEntrances', {id: this.model.get('sliderId')});
         },
 
         render: function () {

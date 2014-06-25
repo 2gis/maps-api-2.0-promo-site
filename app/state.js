@@ -14,7 +14,9 @@ module.exports = function() {
 				'openness',
 				'mobile',
 				'start'
-			]
+			],
+			sliderId: 0,
+			sliderEl: {},
 		},
 
 		validate: function(attrs, options) {

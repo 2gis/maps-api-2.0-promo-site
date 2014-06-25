@@ -12,7 +12,7 @@ module.exports = function(map, app) {
         // var group = map.marker = new L.Marker([55.755616894047215, 37.60070800781251], {bounceOnAdd: true}).addTo(map);
 
         function populate() {
-            for (var i = 0; i < 100; i++) {
+            for (var i = 0; i < 20; i++) {
                 var m = new L.Marker([result[i].lat, result[i].lon], {bounceOnAdd: true});
                 group.addLayer(m);
             }

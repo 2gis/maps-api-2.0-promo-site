@@ -74,7 +74,7 @@ module.exports = function(map, app) {
 		map.removeLayer(cLayers[year]);
 	}
 
-    app.vent.on('changeOpennes', function (data) {
+    app.vent.on('changeOpenness', function (data) {
     	console.log(data.id);
     });
 
