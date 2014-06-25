@@ -6,7 +6,7 @@ module.exports = function() {
 		defaults: {
 			max: 7,
 			pages: [
-				'index',
+				'',
 				'lightness',
 				'modularity',
 				'themes',

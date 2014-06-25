@@ -14,13 +14,13 @@ module.exports = function(map, app) {
     });
 
     app.plugins.markers = DG.plugin([
-        '/vendors/Leaflet.markerCluster/leaflet.markercluster-src.js',
-        '/vendors/Leaflet.markerCluster/MarkerCluster.Default.css'
+        './vendors/Leaflet.markerCluster/leaflet.markercluster-src.js',
+        './vendors/Leaflet.markerCluster/MarkerCluster.Default.css'
     ]);
 
-    app.plugins.heat = DG.plugin('/vendors/HeatLayer/heatLayer.js');
+    app.plugins.heat = DG.plugin('./vendors/HeatLayer/heatLayer.js');
 
-    app.plugins.marker = DG.plugin('/vendors/Leaflet.bounceMarker/leaflet.bouncemarker.js');
+    app.plugins.marker = DG.plugin('./vendors/Leaflet.bounceMarker/leaflet.bouncemarker.js');
 
     app.device = setup(app);
 

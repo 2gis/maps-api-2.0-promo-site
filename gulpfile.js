@@ -311,7 +311,7 @@ var config  = {
 gulp.task('serve', function(){
     var app = express()
         .use(morgan('dev'))
-        .use(express.static(config.root))
+        .use('/mapsapi', express.static(config.root))
         .use('*', function(req, res) {
             res.sendfile(config.root + '/index.html');
         });
