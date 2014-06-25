@@ -91,18 +91,17 @@ module.exports = function (app) {
             this.$('.' + activeClass).removeClass(activeClass);
             $el.addClass(activeClass);
             state = $el.data('state') ? $el.data('state') : 'page' + this.model.get('page');
-            // console.log(state);
             this.model.set('state', state);
+
             return this;
         },
 
         // slider
         handleSlider: function (e) {
-            var type = e.currentTarget.className.split('-')[0],
-                $el = this.$(e.target),
-                id = $el.data('id');
-
             e.preventDefault();
+
+            var $el = this.$(e.target),
+                id = $el.data('id');
 
             this.model.set({sliderEl: $el, sliderId: id});
         },
