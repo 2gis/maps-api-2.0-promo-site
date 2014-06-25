@@ -19,7 +19,7 @@ module.exports = function (app) {
 
         initialize: function () {
             this.model.on('change:page', this.update, this);
-            this.model.on('change:sliderId', this._updateSlider, this);
+            this.model.on('change:sliderEl', this._updateSlider, this);
 
             this.render().toggle();
         },
@@ -91,18 +91,17 @@ module.exports = function (app) {
             this.$('.' + activeClass).removeClass(activeClass);
             $el.addClass(activeClass);
             state = $el.data('state') ? $el.data('state') : 'page' + this.model.get('page');
-            // console.log(state);
             this.model.set('state', state);
+
             return this;
         },
 
         // slider
         handleSlider: function (e) {
-            var type = e.currentTarget.className.split('-')[0],
-                $el = this.$(e.target),
-                id = $el.data('id');
-
             e.preventDefault();
+
+            var $el = this.$(e.target),
+                id = $el.data('id');
 
             this.model.set({sliderEl: $el, sliderId: id});
         },
@@ -133,7 +132,7 @@ module.exports = function (app) {
             var activeClass = this.model.getPageName() + '-examples__example-link_is-shown_true',
                 $el = this.model.get('sliderEl');
 
-            this.model.previous('sliderEl').removeClass(activeClass);
+            this.$('.' + activeClass).removeClass(activeClass);
             $el && $el.addClass(activeClass);
         },
 

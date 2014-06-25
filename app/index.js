@@ -9,10 +9,8 @@ var app = {
 
 app.root = '/mapsapi';
 app.state = new State();
-app = _.extend(app, Backbone.Events);
 
 $(document).ready(function () {
 	app.router = new Router();
 	Backbone.history.start({ pushState: false, root: app.root });
 });
-

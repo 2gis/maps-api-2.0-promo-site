@@ -12,14 +12,18 @@ module.exports = function(map, app) {
         map.removeLayer(map.marker);
     }
 
+    //slider
+    app.state.off('change:sliderId');
+    if (map.entrance && map.hasLayer(map.entrance)) {
+        map.removeLayer(map.entrance);
+    }
+
     !map.geoclicker.enabled() && map.geoclicker.disable();
 
     if (map.controls.ruler) {
         map.removeControl(map.controls.ruler);
         map.controls.ruler = null;
     }
-
-    //slider
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 
