@@ -1,5 +1,5 @@
 module.exports = function(map, app) {
-    map.setView([55.755616894047215, 37.60070800781251], 10);
+    map.setView([55.698098749057806, 37.59521484375001], 10);
 
     if (map.clusters) {
         return map.addLayer(map.clusters).fitBounds(map.clusters.getBounds());

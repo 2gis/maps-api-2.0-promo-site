@@ -1,10 +1,12 @@
 var $ = require('jquery');
 
-module.exports = function(map, app) {
+module.exports = function(map, app) { 
+    map.setView([55.698098749057806, 37.59521484375001], 10);
+
     if (map.marker) {
         map.addLayer(map.marker);
         anim(map.marker);
-        return;
+        return map;
     }
 
     app.plugins.marker.then(function() {
