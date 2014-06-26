@@ -24,9 +24,9 @@ module.exports = function(map, app) {
     function updateDescription(id) {
         var description = data[id].description;
 
-        titleNode.html(description.company);
-        addressNode.html(description.address);
-        textNode.html(description.text);
+        titleNode.text(description.company);
+        addressNode.text(description.address);
+        textNode.text(description.text);
     }
 
     // init state
