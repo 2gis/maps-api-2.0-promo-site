@@ -22,7 +22,14 @@ module.exports = function(map, app) {
 
     if (map.controls.ruler) {
         map.removeControl(map.controls.ruler);
-        map.controls.ruler = null;
+    }
+
+    if (!map.controls.fullscreen) {
+        map.controls.fullscreen = DG.control.fullscreen().addTo(map);
+    }
+
+    if (!map.controls.zoom) {
+        map.controls.zoom = DG.control.zoom({position: 'topright'}).addTo(map);
     }
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
@@ -30,8 +37,6 @@ module.exports = function(map, app) {
     if (map.githubCommits){
         map.githubCommits.forEach(function(commits){map.removeLayer(commits);});
     }
-
-
 
     app.device.clean().disable();
 

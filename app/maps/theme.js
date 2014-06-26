@@ -11,7 +11,9 @@ module.exports = function(map, skin) {
         test = url.match(regex);
 
     map.geoclicker.enable();
-    if (!map.controls.ruler) {
+    if (map.controls.ruler) {
+        map.controls.ruler.addTo(map);
+    } else {
         map.controls.ruler = DG.control.ruler().addTo(map);
     }
 
