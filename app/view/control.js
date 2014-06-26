@@ -114,6 +114,7 @@ module.exports = function (app) {
                 $el = this.$(e.target);
 
             if (!this._interval) {
+                this._runSlider();
                 this._interval = window.setInterval(this._runSlider.bind(this),
                                             2500);
                 $el.addClass(type + playClass);
