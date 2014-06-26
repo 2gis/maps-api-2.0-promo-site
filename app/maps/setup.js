@@ -22,7 +22,7 @@ module.exports = function(map, app) {
 
     app.plugins.marker = DG.plugin('./vendors/Leaflet.bounceMarker/leaflet.bouncemarker.js');
 
-    app.device = setup(app);
+    app.device = setup(map, app);
 
     return map;
 };

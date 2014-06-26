@@ -1,7 +1,10 @@
-module.exports = function(app) {
+var $ = require('jquery');
+
+module.exports = function(map, app) {
+    DG.Browser.retina = true;
     var device = app.base.control.$('.device'),
         display = device.children(),
-        map = new DG.Map('mobile-map', {
+        map2 = new DG.Map('mobile-map', {
             'center': new DG.LatLng(54.980156831455, 82.897440725094),
             'zoom': 13,
             'geoclicker': false,
@@ -9,7 +12,34 @@ module.exports = function(app) {
             'locationControl': false,
             'zoomControl': true,
             'fullscreenControl': false
-        });
+        }),
+        $map2 = $(map2.getContainer()),
+        diff;
+
+    function setDiff() {
+        var map1C = map.getSize().divideBy(2),
+            map2C = map2.getSize().divideBy(2).add([$map2.offset().left, $map2.offset().top]);
+        
+        diff = map1C.subtract(map2C);
+        setView(map, map2);
+    };
+
+    function setView(from, to) {
+        var center = from.project(from.getCenter()),
+            newCenter = center.subtract(diff);
+
+        to.setView(from.unproject(newCenter), from.getZoom(), {animate: false});
+    };
+
+    setDiff();
+
+    map.on('resize', function() {
+        setDiff();
+    });
+
+    map.on('move', function(e) {
+        setView(map, map2);
+    });
 
     return {
         enable: function() {
@@ -29,9 +59,10 @@ module.exports = function(app) {
             this.clean();
             device.addClass(type);
             display.addClass(type + '__display');
-            map.invalidateSize();
+            map2.invalidateSize();
+            setDiff();
             return this;
         },
-        map: map
+        map: map2
     };
 };
