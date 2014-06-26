@@ -20,7 +20,7 @@ module.exports = function(map, app) {
 		if(Commits[year]){
 			Commits[year].forEach(
 				function(commit){
-					aMarkers.push( DG.marker([commit.latlng.lat,commit.latlng.lng], {icon: GitHubIcon}).bindPopup(commit.location) );
+					aMarkers.push( DG.marker([commit.latlng.lat,commit.latlng.lng], {icon: GitHubIcon}) );
 				}
 			);
 		}
