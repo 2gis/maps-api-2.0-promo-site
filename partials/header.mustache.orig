@@ -64,7 +64,7 @@
                     <a class="entrances-examples__play-pause-button" href="#" title=""></a>
                     <ul class="entrances-examples__list">
                         <li class="entrances-examples__item">
-                            <a class="entrances-examples__example-link entrances-examples__example-link_is-shown_true" href="#" data-id="0" title="">1</a>
+                            <a class="entrances-examples__example-link" href="#" data-id="0" title="">1</a>
                         </li>
                         <li class="entrances-examples__item">
                             <a class="entrances-examples__example-link" data-id="1" href="#" title="">2</a>
@@ -101,6 +101,9 @@
                         <li class="openness-examples__item">
 <<<<<<< HEAD
                             <a class="openness-examples__example-link openness-examples__example-link_is-shown_true" data-id="2010" href="#" title="">2010</a>
+=======
+                            <a class="openness-examples__example-link" data-id="0" href="#" title="">2010</a>
+>>>>>>> a35fa82d1d6f233259b6f5524bb44b3b036fa44a
                         </li>
                         <li class="openness-examples__item">
                             <a class="openness-examples__example-link" data-id="2011" href="#" title="">2011</a>
@@ -113,24 +116,6 @@
                         </li>
                         <li class="openness-examples__item">
                             <a class="openness-examples__example-link" data-id="2014" href="#" title="">2014</a>
-=======
-                            <a class="openness-examples__example-link openness-examples__example-link_is-shown_true" data-id="0" href="#" title="">2010</a>
-                        </li>
-                        <li class="openness-examples__item">
-                            <a class="openness-examples__example-link" data-id="1" href="#" title="">2011</a>
-                        </li>
-                        <li class="openness-examples__item">
-                            <a class="openness-examples__example-link" data-id="2" href="#" title="">2012</a>
-                        </li>
-                        <li class="openness-examples__item">
-                            <a class="openness-examples__example-link" data-id="3" href="#" title="">2012</a>
-                        </li>
-                        <li class="openness-examples__item">
-                            <a class="openness-examples__example-link" data-id="4" href="#" title="">2013</a>
-                        </li>
-                        <li class="openness-examples__item">
-                            <a class="openness-examples__example-link" data-id="5" href="#" title="">2014</a>
->>>>>>> 25d6d3b45f96fb8551a6fac092ad0418eb1f3043
                         </li>
                     </ul>
                 </div>

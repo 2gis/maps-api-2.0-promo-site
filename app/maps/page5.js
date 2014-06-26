@@ -2,19 +2,16 @@ var $ = require('jquery');
 var Commits = require('./commits');
 module.exports = function(map, app) {
 
-
-
 	// console.log(app.base.footer);
 
 	var GitHubIcon = DG.icon({
-	    iconUrl: '/img/github-mark.png',
-	    iconRetinaUrl: '/img/github-mark.png',
+	    iconUrl: '/mapsapi/img/github-mark.png',
+	    iconRetinaUrl: '/mapsapi/img/github-mark.png',
 	    iconSize: [32, 32],
 	    iconAnchor: [16, 16]
 	});
 
-	var cLayers = [], commits = [], 
-		nextYear, autoSwitch = true, Switcher;
+	var cLayers = map.githubCommits = [], commits = [];
 
 	map.setView([52.855864177853995, 3.5156250000000004], 3);
 
@@ -29,11 +26,14 @@ module.exports = function(map, app) {
 		}
 	}
 
+	function clickSlider() {
+		showCommits(app.state.get('sliderId') + 2010);
+	}
+
 	function showCommits(year){
+		
 		if(!Commits[year] ) { return; }
 		
-		year === 2014 ? nextYear = 2010 : nextYear = year+1;
-
 		if(year < 2014) {
 		for(var hy = year; hy<=2014; hy++) {
 			 hideCommits(hy);
@@ -42,19 +42,12 @@ module.exports = function(map, app) {
 		}
 
 		for(var y = year; y>=2010; y--) {
-		if(!commits[y]) {commits[y] = [];
-		addMarkersToGroup(y, commits[y]);
-		cLayers[y] = DG.layerGroup(commits[y]).addTo(map);}
+		if(!commits[y]) {
+			commits[y] = [];
+			addMarkersToGroup(y, commits[y]);
+			cLayers[y] = DG.layerGroup(commits[y]);
+			map.addLayer(cLayers[y]);}
 		}
-	}
-
-	function switchToNext(){
-		if (!autoSwitch) {return;}
-		showCommits(nextYear);
-	}
-
-	function setupSwitcher(){
-		Switcher = setInterval(switchToNext, 3000);
 	}
 
 	function hideCommits(year){
@@ -62,9 +55,9 @@ module.exports = function(map, app) {
 		 map.removeLayer(cLayers[year]);
 	}
 
-    app.on('changeOpenness', function (data) {
-    	console.log(data.id);
-    });
+    app.state.on('change:sliderId', clickSlider);
+
+    showCommits("2010");
 
 	return map;
 };

@@ -27,6 +27,12 @@ module.exports = function(map, app) {
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
 
+    if (map.githubCommits){
+        map.githubCommits.forEach(function(commits){map.removeLayer(commits);});
+    }
+
+
+
     app.device.clean().disable();
 
     return map;
