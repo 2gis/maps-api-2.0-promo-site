@@ -11,11 +11,6 @@ module.exports = function(map, skin) {
         test = url.match(regex);
 
     map.geoclicker.enable();
-    if (map.controls.ruler) {
-        map.controls.ruler.addTo(map);
-    } else {
-        map.controls.ruler = DG.control.ruler().addTo(map);
-    }
 
     map.fire('click', {latlng: new DG.LatLng(54.98018731490755, 82.89802551269531)});
 
