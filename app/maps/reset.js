@@ -20,10 +20,6 @@ module.exports = function(map, app) {
 
     !map.geoclicker.enabled() && map.geoclicker.disable();
 
-    if (map.controls.ruler) {
-        map.removeControl(map.controls.ruler);
-    }
-
     if (!map.controls.fullscreen) {
         map.controls.fullscreen = DG.control.fullscreen().addTo(map);
     }
