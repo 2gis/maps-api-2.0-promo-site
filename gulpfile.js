@@ -272,50 +272,51 @@ gulp.task('build-templates', function () {
 });
 
 
-var browserify   = require('browserify');
-var notify = require("gulp-notify");
-var handleErrors = function() {
+var browserify = require('browserify'),
+    notify = require('gulp-notify'),
+    source = require('vinyl-source-stream'),
+    
+    handleErrors = function() {
+        var args = Array.prototype.slice.call(arguments);
 
-    var args = Array.prototype.slice.call(arguments);
+        // Send error to notification center with gulp-notify
+        notify.onError({
+            title: 'Compile Error',
+            message: '<%= error.message %>'
+        }).apply(this, args);
 
-    // Send error to notification center with gulp-notify
-    notify.onError({
-        title: "Compile Error",
-        message: "<%= error.message %>"
-    }).apply(this, args);
+        // Keep gulp from hanging on this task
+        this.emit('end');
+    };
 
-    // Keep gulp from hanging on this task
-    this.emit('end');
-};
-var source       = require('vinyl-source-stream');
 
 gulp.task('browserify', function(){
-    return browserify({
+    return (
+        browserify({
             entries: ['./app/index.js'],
             extensions: ['.js', '.mustache']
         })
-        .bundle({debug: true})
+        .bundle({ debug: true })
         .on('error', handleErrors)
         .pipe(source('app.js'))
-        .pipe(gulp.dest('./build/js'));
+        .pipe(gulp.dest('./build/js'))
+    );
 });
 
-var express = require('express');
-var morgan  = require('morgan');
-// var http    = require('http');
-var config  = {
-    root: './build',
-    port: 8080
-};
+var express = require('express'),
+    morgan = require('morgan'),
+    config = {
+        root: './build',
+        port: 8080
+    };
 
-gulp.task('serve', function(){
+gulp.task('serve', function () {
     var app = express()
-        .use(morgan('dev'))
-        .use('/mapsapi', express.static(config.root))
-        .use('*', function(req, res) {
-            res.sendfile(config.root + '/index.html');
-        });
+                .use(morgan('dev'))
+                .use('/mapsapi', express.static(config.root))
+                .use('*', function (req, res) {
+                    res.sendfile(config.root + '/index.html');
+                });
 
-    // http.createServer(app).listen(config.port);
     app.listen(config.port);
 });
