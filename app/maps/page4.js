@@ -18,6 +18,7 @@ module.exports = function(map, app) {
             });
         }
         map.entrance = entrances[id];
+        map.setView([59.99422983908714, 30.438406955084687], 18, {animation: false});
         entrances[id].addTo(map).show();
     }
 
