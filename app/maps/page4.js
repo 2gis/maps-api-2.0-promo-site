@@ -32,6 +32,7 @@ module.exports = function(map, app) {
 
     // init state
     showEntrance();
+    app.base.control.$('.entrances-examples__play-pause-button').trigger('click');
 
     return map;
 };

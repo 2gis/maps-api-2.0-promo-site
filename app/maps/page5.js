@@ -31,9 +31,9 @@ module.exports = function(map, app) {
 	}
 
 	function showCommits(year){
-		
+
 		if(!Commits[year] ) { return; }
-		
+
 		if(year < 2014) {
 		for(var hy = year; hy<=2014; hy++) {
 			 hideCommits(hy);
@@ -56,8 +56,8 @@ module.exports = function(map, app) {
 	}
 
     app.state.on('change:sliderId', clickSlider);
-
     showCommits("2010");
+    app.base.control.$('.openness-examples__play-pause-button').trigger('click');
 
 	return map;
 };
