@@ -1,12 +1,9 @@
 var $ = require('jquery');
 
 module.exports = function(map, app) { 
-    map.setView([55.698098749057806, 37.59521484375001]);
 
     if (map.marker) {
-        map.addLayer(map.marker);
-        anim(map.marker);
-        return map;
+        return start(map.marker);
     }
 
     app.plugins.marker.then(function() {
@@ -29,9 +26,33 @@ module.exports = function(map, app) {
             e.layer.bounce({duration: 500, height: 400});
         });
 
-        map.addLayer(group);
-        anim(group);
+        start(group);
     });
+
+    function start(group) {
+        var zoom = 10,
+            prevZoom = map.getZoom();
+
+        map.setView([55.698098749057806, 37.59521484375001], 10)
+            .setMaxBounds([
+                [56.13330691237569, 38.46725463867188],
+                [55.28928256326212, 36.81930541992188]
+            ])
+            .options.minZoom = 10;
+
+        if (prevZoom === zoom) {
+            run();
+        } else {
+            map.once('viewreset', run);
+        }
+
+        function run() {
+            map.addLayer(group);
+            anim(group);
+        };
+
+        return map;
+    };
 
     function gen(group) {
         var layers = group.getLayers(),
@@ -39,7 +60,7 @@ module.exports = function(map, app) {
             next = function() {
                 var value = layers[pos];
                 pos++;
-                return (value && pos < 10) ? value : false;
+                return (value && pos < 6) ? value : false;
             };
         return next;
     };
