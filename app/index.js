@@ -1,7 +1,7 @@
-var app = {
+window.app = {
 		plugins: {}
-	},
-	State = require('./state')(app),
+	};
+var	State = require('./state')(app),
 	Router = require('./router')(app),
 	Backbone = require('backbone'),
     _ = require('underscore'),

@@ -115,8 +115,7 @@ module.exports = function (app) {
 
             if (!this._interval) {
                 this._runSlider();
-                this._interval = window.setInterval(this._runSlider.bind(this),
-                                            2500);
+                this._interval = window.setInterval(this._runSlider.bind(this), 5000);
                 $el.addClass(type + playClass);
             } else {
                 $el.removeClass(type + playClass);
@@ -129,12 +128,20 @@ module.exports = function (app) {
             this.model.trigger('change:sliderId');
         },
 
+        _resetSliderPlay: function () {
+            if (this._interval) {
+                this._stopSlider();
+                this._interval = window.setInterval(this._runSlider.bind(this), 5000);
+            }
+        },
+
         _updateSlider: function () {
             var activeClass = this.model.getPageName() + '-examples__example-link_is-shown_true',
                 $el = this.model.get('sliderEl');
 
             this.$('.' + activeClass).removeClass(activeClass);
             $el && $el.addClass(activeClass);
+            this._resetSliderPlay();
         },
 
         _runSlider: function () {

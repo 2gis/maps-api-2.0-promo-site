@@ -18,7 +18,9 @@ module.exports = function(map, app) {
             });
         }
         map.entrance = entrances[id];
-        entrances[id].addTo(map).show();
+        entrances[id].addTo(map);
+        map.fitBounds(entrances[id].getBounds(), { animation: true });
+        entrances[id].show();
     }
 
     function updateDescription(id) {
@@ -31,6 +33,7 @@ module.exports = function(map, app) {
 
     // init state
     showEntrance();
+    app.base.control.$('.entrances-examples__play-pause-button').trigger('click');
 
     return map;
 };
