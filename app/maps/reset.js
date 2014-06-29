@@ -23,10 +23,6 @@ module.exports = function(map, app) {
 
     !map.geoclicker.enabled() && map.geoclicker.disable();
 
-    if (!map.controls.fullscreen) {
-        map.controls.fullscreen = DG.control.fullscreen().addTo(map);
-    }
-
     if (!map.controls.zoom) {
         map.controls.zoom = DG.control.zoom({position: 'topright'}).addTo(map);
     }
@@ -36,8 +32,6 @@ module.exports = function(map, app) {
     if (map.githubCommits) {
         map.githubCommits.forEach(function(commits){map.removeLayer(commits);});
     }
-
-    app.device.clean().disable();
 
     return map;
 };
