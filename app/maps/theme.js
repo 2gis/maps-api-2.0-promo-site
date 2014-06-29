@@ -10,6 +10,7 @@ module.exports = function(map, skin) {
         regex = /skin=(\w*)/,
         test = url.match(regex);
 
+    map.poi.enable();
     map.geoclicker.enable();
 
     map.fire('click', {latlng: new DG.LatLng(54.98018731490755, 82.89802551269531)});

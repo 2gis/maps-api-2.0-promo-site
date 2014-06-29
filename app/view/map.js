@@ -8,7 +8,7 @@ module.exports = function(app) {
 
         mapOpts: function () {
             return {
-                'center': new DG.LatLng(54.980156831455, 82.897440725094),
+                'center': new DG.LatLng(59.940409, 30.309482),
                 'zoom': 13,
                 'geoclicker': false,
                 'worldCopyJump': true,

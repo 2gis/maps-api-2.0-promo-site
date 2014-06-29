@@ -5,7 +5,9 @@ module.exports = function(map, app) {
         newBar = loader.find('.lightness-panel__version_of_new-api .lightness-panel__progress-bar-fill'),
         oldBar = loader.find('.lightness-panel__version_of_old-api .lightness-panel__progress-bar-fill'),
         loaded = 'lightness-panel__progress-bar-fill-is_loaded',
-        timer1, timer2
+        timer1, timer2;
+
+    map.setView([59.941076, 30.324256], 17);
 
     newBar.add(oldBar).width(0).stop().removeClass(loaded);
 
