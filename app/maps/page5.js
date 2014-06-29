@@ -2,8 +2,6 @@ var $ = require('jquery');
 var Commits = require('./commits');
 module.exports = function(map, app) {
 
-	// console.log(app.base.footer);
-
 	var GitHubIcon = DG.icon({
 	    iconUrl: '/mapsapi/img/github-mark.png',
 	    iconRetinaUrl: '/mapsapi/img/github-mark.png',
@@ -14,7 +12,6 @@ module.exports = function(map, app) {
 	var cLayers = map.githubCommits = [], commits = [];
 
 	map.setView([52.855864177853995, 3.5156250000000004], 3);
-
 
 	function addMarkersToGroup(year, aMarkers){
 		if(Commits[year]){
