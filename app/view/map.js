@@ -14,7 +14,8 @@ module.exports = function(app) {
                 'worldCopyJump': true,
                 'locationControl': false,
                 'zoomControl': false,
-                'fullscreenControl': false
+                'fullscreenControl': false,
+                'poi': false
             };
         },
 
@@ -33,7 +34,6 @@ module.exports = function(app) {
 
                 if (this.model.get('page') == 0 ||
                 this.model.get('page') == this.model.get('max')) {
-                    map.removeControl(map.controls.fullscreen);
                     map.removeControl(map.controls.zoom);
                     map.controls.fullscreen = null;
                     map.controls.zoom = null;
