@@ -2,8 +2,6 @@ var $ = require('jquery');
 var Commits = require('./commits');
 module.exports = function(map, app) {
 
-	// console.log(app.base.footer);
-
 	var GitHubIcon = DG.icon({
 	    iconUrl: '/mapsapi/img/github-mark.png',
 	    iconRetinaUrl: '/mapsapi/img/github-mark.png',

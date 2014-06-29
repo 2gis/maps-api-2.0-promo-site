@@ -34,7 +34,5 @@ module.exports = function(map, app) {
         map.githubCommits.forEach(function(commits){map.removeLayer(commits);});
     }
 
-    app.device.clean().disable();
-
     return map;
 };

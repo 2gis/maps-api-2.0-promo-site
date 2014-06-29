@@ -1,4 +1,3 @@
-var setup = require('./device');
 
 module.exports = function(map, app) {
     app.banks = DG.ajax('http://catalog.api.2gis.ru/2.0/catalog/branch/search', {
@@ -21,8 +20,6 @@ module.exports = function(map, app) {
     app.plugins.heat = DG.plugin('./vendors/HeatLayer/heatLayer.js');
 
     app.plugins.marker = DG.plugin('./vendors/Leaflet.bounceMarker/leaflet.bouncemarker.js');
-
-    app.device = setup(map, app);
 
     return map;
 };

@@ -4,7 +4,7 @@ Backbone.$ = require('jquery');
 module.exports = function() {
 	return Backbone.Model.extend({
 		defaults: {
-			max: 7,
+			max: 6,
 			pages: [
 				'',
 				'lightness',
@@ -12,7 +12,6 @@ module.exports = function() {
 				'themes',
 				'entrances',
 				'openness',
-				'mobile',
 				'start'
 			],
 			sliderId: 0,
