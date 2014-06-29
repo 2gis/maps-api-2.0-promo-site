@@ -20,8 +20,18 @@ module.exports = function (app) {
         initialize: function () {
             this.model.on('change:page', this.update, this);
             this.model.on('change:sliderEl', this._updateSlider, this);
+            window.onkeyup = this.keyUp.bind(this);
 
             this.render().toggle();
+        },
+
+        keyUp: function(e) {
+            if (e.keyIdentifier === 'Right') {
+                this.next(e);
+            }
+            if (e.keyIdentifier === 'Left') {
+                this.prev(e);
+            }
         },
 
         toggle: function () {

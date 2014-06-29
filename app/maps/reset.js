@@ -22,6 +22,7 @@ module.exports = function(map, app) {
     }
 
     !map.geoclicker.enabled() && map.geoclicker.disable();
+    !map.poi.enabled() && map.poi.disable();
 
     if (!map.controls.zoom) {
         map.controls.zoom = DG.control.zoom({position: 'topright'}).addTo(map);
