@@ -115,7 +115,7 @@ module.exports = function (app) {
 
             if (!this._interval) {
                 this._runSlider();
-                this._interval = window.setInterval(this._runSlider.bind(this), 2500);
+                this._interval = window.setInterval(this._runSlider.bind(this), 5000);
                 $el.addClass(type + playClass);
             } else {
                 $el.removeClass(type + playClass);
@@ -131,7 +131,7 @@ module.exports = function (app) {
         _resetSliderPlay: function () {
             if (this._interval) {
                 this._stopSlider();
-                this._interval = window.setInterval(this._runSlider.bind(this), 2500);
+                this._interval = window.setInterval(this._runSlider.bind(this), 5000);
             }
         },
 
