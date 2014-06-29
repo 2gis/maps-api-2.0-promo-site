@@ -1,5 +1,8 @@
 module.exports = function(map, app) {
 
+    map.setMaxBounds()
+        .options.minZoom = 0;
+
     if (map.clusters && map.hasLayer(map.clusters)) {
         map.removeLayer(map.clusters);
     }

@@ -13,7 +13,6 @@ module.exports = function(map, app) {
 
 	map.setView([52.855864177853995, 3.5156250000000004], 3);
 
-
 	function addMarkersToGroup(year, aMarkers){
 		if(Commits[year]){
 			Commits[year].forEach(

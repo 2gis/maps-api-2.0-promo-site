@@ -4,7 +4,7 @@ require('../../polyfill/indexOf');
 module.exports = function(map, skin) {
     map.setView([54.980496831455, 82.897140725094], 18);
     var css = $('head [rel=stylesheet]').filter(function() {
-            return $(this).attr('href').indexOf('maps.api') > -1;
+            return $(this).attr('href').indexOf('127') > -1;
         }),
         url = css.attr('href'),
         regex = /skin=(\w*)/,
