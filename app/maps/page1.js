@@ -1,31 +1,41 @@
 module.exports = function(map, app) {
     var loader = app.base.footer.$('[data-footer-state=page1]'),
-        timeEl = loader.find('.lightness-panel__counter'),
+        timeElNew = loader.find('.lightness-panel__counter_of_new-api'),
+        timeElOld = loader.find('.lightness-panel__counter_of_old-api'),
         newBar = loader.find('.lightness-panel__version_of_new-api .lightness-panel__progress-bar-fill'),
         oldBar = loader.find('.lightness-panel__version_of_old-api .lightness-panel__progress-bar-fill'),
         loaded = 'lightness-panel__progress-bar-fill-is_loaded',
-        timer, time = 0, ms, s;
+        timer1, timer2
 
     newBar.add(oldBar).width(0).stop().removeClass(loaded);
 
     newBar.animate({width: '60%'}, {
         duration: 2000,
+        start: function() {
+            timer1 = startTimer(timeElNew);
+        }, 
         complete: function() {
             newBar.addClass(loaded);
+            clearInterval(timer1);
             app.base.$('.map').removeClass('map_has-overlay_dark');
         }
     });
+
     oldBar.animate({width: '100%'}, {
         duration: 4000,
-        start: startTimer,
+        start: function() {
+            timer2 = startTimer(timeElOld);
+        }, 
         always: function() {
             oldBar.addClass(loaded);
-            clearInterval(timer);
+            clearInterval(timer2);
         }
     });
 
-    function startTimer() {
-        timer = setInterval(function() {
+    function startTimer(el) {
+        var time = 0, ms, s;
+        // console.log(el);
+        return setInterval(function() {
             time += 1;
             s =  Math.floor(time / 60);
             ms = Math.floor(time % 60);
@@ -35,7 +45,7 @@ module.exports = function(map, app) {
             if (ms < 10) {
                 ms = '0' + ms;
             }
-            timeEl.text(['00', s, ms].join(' : '));
+            el.text(['00', s, ms].join(' : '));
         }, 20);
     };
 
