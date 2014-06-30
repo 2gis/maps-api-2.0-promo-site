@@ -102,6 +102,7 @@ a {
             margin-top 0.15s,
             top 1.4s,
             opacity 0.1s;
+        animation: intro__header 0.6s ease;
 
         &:hover {
             margin-top: -236px;
@@ -129,6 +130,7 @@ a {
             width: 20px;
             height: 11px;
             transition: top 0.15s;
+            animation: intro__header-arrow-down 0.8s ease-in 0.8s;
             }
 
         &:hover:after {
@@ -140,6 +142,37 @@ a {
         margin-top: 0;
         opacity: 0;
         }
+
+    @keyframes intro__header {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+            }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+            }
+        }
+
+    @keyframes intro__header-arrow-down {
+        0% {
+            transform: translate3d(0, 0, 0);
+            }
+        25% {
+            transform: translate3d(0, 8px, 0);
+            }
+        50% {
+            transform: translate3d(0, -4px, 0);
+            }
+        65% {
+            transform: translate3d(0, 8px, 0);
+            }
+        100% {
+            transform: translate3d(0, 0, 0);
+            }
+        }
+
         .intro__api-version {
             color: #a4ce3b;
             }
