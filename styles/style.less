@@ -8,12 +8,13 @@
 a {
     color: #fff;
     text-decoration: underline;
+
     &:hover,
     &:visited {
         color: #fff;
         text-decoration: none;
+        }
     }
-}
 
 .page {
     position: relative;
@@ -479,6 +480,7 @@ a {
                 border-radius: 50%;
                 background-color: #6e6e6e;
                 content: '';
+                transition: background-color 0.4s;
                 }
             }
             .features__table-of-contents-item_is-active_true:before {
@@ -487,6 +489,7 @@ a {
                 bottom: -1px;
                 left: -2px;
                 background-color: #32aed7;
+                transition: background-color 0.1s;
                 }
     .features__list {
         position: relative;
@@ -530,9 +533,9 @@ a {
                     content: none;
                     }
                 }
-            .features__list-item_name_lightness .features__list-item-section:first-child {
-                padding-bottom: 19px;
-                }
+            // .features__list-item_name_lightness .features__list-item-section:first-child {
+            //     padding-bottom: 19px;
+            //     }
             .features__list-item_name_modularity .features__list-item-section {
                 padding-top: 34px;
                 padding-bottom: 16px;
@@ -715,7 +718,7 @@ a {
     width: 370px;
     }
     .lightness-panel__counter {
-        margin: 16px 0 -16px 245px;
+        margin: 0 0 -16px 245px;
         white-space: nowrap;
         font: normal 28px/26px 'SuisseIntlCond', Arial, sans-serif;
         }
@@ -997,7 +1000,7 @@ a {
             left: -6px;
             box-shadow: inherit;
             }
-        
+
         &.features__round-link-is-active_true:before,
         &:active:before {
             top: 0;
@@ -1042,7 +1045,7 @@ a {
                     0 2px 0 0 #393939 inset;
                 }
             }
-        
+
         &.features__round-link-is-active_true:before,
         &:active:before {
             top: 0;
@@ -1059,7 +1062,7 @@ a {
                 bottom 0.05s,
                 left 0.05s;
             }
-        
+
         &:after {
             .noRepeatableBg('broom-white');
             }
