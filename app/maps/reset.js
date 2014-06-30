@@ -30,7 +30,7 @@ module.exports = function(map, app) {
     !map.projectDetector.enabled() && map.projectDetector.enable();
 
     if (!map.controls.zoom) {
-        map.controls.zoom = DG.control.zoom({position: 'topright'}).addTo(map);
+        map.controls.zoom = DG.control.zoom({position: DG.Browser.touch ? 'bottomright' : 'topright'}).addTo(map);
     }
 
     map.geoclicker._map._popup && map.closePopup(map.geoclicker._map._popup);
