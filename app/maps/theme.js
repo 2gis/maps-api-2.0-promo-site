@@ -15,7 +15,7 @@ module.exports = function(map, skin) {
 
     map.fire('click', {latlng: new DG.LatLng(54.98018731490755, 82.89802551269531)});
 
-    css.attr('href', test ? url.replace(regex, 'skin=' + skin) : (url + 'skin=' + skin));
+    css.attr('href', test ? url.replace(regex, 'skin=' + skin) : (url + '&skin=' + skin));
 
     return map;
 };
