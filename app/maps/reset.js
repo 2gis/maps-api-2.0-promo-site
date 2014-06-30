@@ -21,8 +21,8 @@ module.exports = function(map, app) {
         map.removeLayer(map.entrance);
     }
 
-    !map.geoclicker.enabled() && map.geoclicker.disable();
-    !map.poi.enabled() && map.poi.disable();
+    map.geoclicker.enabled() && map.geoclicker.disable();
+    map.poi.enabled() && map.poi.disable();
 
     if (!map.controls.zoom) {
         map.controls.zoom = DG.control.zoom({position: 'topright'}).addTo(map);
