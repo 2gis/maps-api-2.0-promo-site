@@ -15,10 +15,12 @@ module.exports = function(map, app) {
         duration: 2000,
         start: function() {
             timer1 = startTimer(timeElNew);
-        }, 
-        complete: function() {
+        },
+        always: function() {
             newBar.addClass(loaded);
             clearInterval(timer1);
+        },
+        complete: function() {
             app.base.$('.map').removeClass('map_has-overlay_dark');
         }
     });
@@ -27,7 +29,7 @@ module.exports = function(map, app) {
         duration: 4000,
         start: function() {
             timer2 = startTimer(timeElOld);
-        }, 
+        },
         always: function() {
             oldBar.addClass(loaded);
             clearInterval(timer2);
@@ -36,7 +38,6 @@ module.exports = function(map, app) {
 
     function startTimer(el) {
         var time = 0, ms, s;
-        // console.log(el);
         return setInterval(function() {
             time += 1;
             s =  Math.floor(time / 60);

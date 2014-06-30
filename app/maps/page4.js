@@ -33,7 +33,7 @@ module.exports = function(map, app) {
 
     // init state
     showEntrance();
-    app.base.control.$('.entrances-examples__play-pause-button').trigger('click');
+    app.base.control.handleSliderStart(null, '.entrances-examples__play-pause-button');
 
     return map;
 };

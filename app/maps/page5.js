@@ -53,8 +53,8 @@ module.exports = function(map, app) {
 	}
 
     app.state.on('change:sliderId', clickSlider);
-    showCommits("2010");
-    app.base.control.$('.openness-examples__play-pause-button').trigger('click');
+    showCommits('2010');
+    app.base.control.handleSliderStart(null, '.openness-examples__play-pause-button');
 
 	return map;
 };

@@ -116,15 +116,21 @@ module.exports = function (app) {
             this.model.set({sliderEl: $el, sliderId: id});
         },
 
-        handleSliderStart: function (e) {
-            e.preventDefault();
-
+        handleSliderStart: function (e, el) {
             var playClass = '-examples__play-pause-button_is-played_true',
-                type = e.currentTarget.className.split('-')[0],
+                $el, type;
+
+            if (e) {
+                e.preventDefault();
                 $el = this.$(e.target);
+            } else {
+                $el = this.$(el);
+            }
+
+            type = $el[0].className.split('-')[0];
 
             if (!this._interval) {
-                this._runSlider();
+                e && this._runSlider();
                 this._interval = window.setInterval(this._runSlider.bind(this), 5000);
                 $el.addClass(type + playClass);
             } else {
