@@ -26,10 +26,10 @@ module.exports = function (app) {
         },
 
         keyUp: function(e) {
-            if (e.keyIdentifier === 'Right') {
+            if (e.keyCode === 37) {
                 this.next(e);
             }
-            if (e.keyIdentifier === 'Left') {
+            if (e.keyCode === 39) {
                 this.prev(e);
             }
         },
