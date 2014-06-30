@@ -17,7 +17,7 @@ module.exports = function(map, app) {
 
     app.plugins.marker = DG.plugin('./vendors/Leaflet.bounceMarker/leaflet.bouncemarker.js');
 
-    if (DG.Browser.mobile && DG.Browser.safari) {
+    if (DG.Browser.chrome && /(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
         app.base.control.$('.features__round-link_name_two-markers').hide();
     } else {
         app.plugins.markers = DG.plugin([
