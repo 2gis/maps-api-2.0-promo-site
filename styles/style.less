@@ -8,12 +8,13 @@
 a {
     color: #fff;
     text-decoration: underline;
+
     &:hover,
     &:visited {
         color: #fff;
         text-decoration: none;
+        }
     }
-}
 
 .page {
     position: relative;
@@ -479,6 +480,7 @@ a {
                 border-radius: 50%;
                 background-color: #6e6e6e;
                 content: '';
+                transition: background-color 0.4s;
                 }
             }
             .features__table-of-contents-item_is-active_true:before {
@@ -487,6 +489,7 @@ a {
                 bottom: -1px;
                 left: -2px;
                 background-color: #32aed7;
+                transition: background-color 0.1s;
                 }
     .features__list {
         position: relative;
