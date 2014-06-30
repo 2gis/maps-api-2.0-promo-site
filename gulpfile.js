@@ -74,7 +74,7 @@ gulp.task('export', function () {
         gulp.src('./styles/**/*.css')
             .pipe(gulp.dest('./build/css/')),
 
-        gulp.src('./img/**/*.{png,gif,jpg,jpeg}')
+        gulp.src('./img/**/*.{png,gif,jpg,jpeg,ico}')
             .pipe(gulp.dest('./build/img/')),
 
         gulp.src('./fonts/**/*.{eot,svg,ttf,woff}')
