@@ -10,6 +10,7 @@ module.exports = function(app) {
             return {
                 'center': new DG.LatLng(59.940409, 30.309482),
                 'zoom': 13,
+                'keyboard': false,
                 'geoclicker': false,
                 'worldCopyJump': true,
                 'locationControl': false,
