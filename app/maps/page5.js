@@ -11,7 +11,10 @@ module.exports = function(map, app) {
 
 	var cLayers = map.githubCommits = [], commits = [];
 
+	map.projectDetector.disable();
 	map.setView([52.855864177853995, 3.5156250000000004], 3);
+	map.options.minZoom = 3;
+	map.options.maxZoom = 7;
 
 	function addMarkersToGroup(year, aMarkers){
 		if(Commits[year]){

@@ -1,7 +1,11 @@
 module.exports = function(map, app) {
 
-    map.setMaxBounds()
-        .options.minZoom = 0;
+    map.setMaxBounds([
+        [85, 1400],
+        [-85, -1400]
+        ]);
+    map.options.minZoom = 0;
+    map.options.maxZoom = 18;
 
     if (map.clusters && map.hasLayer(map.clusters)) {
         map.removeLayer(map.clusters);
@@ -23,6 +27,7 @@ module.exports = function(map, app) {
 
     map.geoclicker.enabled() && map.geoclicker.disable();
     map.poi.enabled() && map.poi.disable();
+    !map.projectDetector.enabled() && map.projectDetector.enable();
 
     if (!map.controls.zoom) {
         map.controls.zoom = DG.control.zoom({position: 'topright'}).addTo(map);
