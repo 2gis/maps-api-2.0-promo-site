@@ -19,7 +19,7 @@ module.exports = function(map, app) {
         }
         map.entrance = entrances[id];
         entrances[id].addTo(map);
-        map.fitBounds(entrances[id].getBounds(), { animation: true });
+        map.fitBounds(entrances[id].getBounds(), { animate: true });
         entrances[id].show();
     }
 
