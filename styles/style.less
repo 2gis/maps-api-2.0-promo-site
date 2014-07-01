@@ -455,7 +455,7 @@ a {
         color: transparent;
         font-size: 0;
 
-        &:after {
+        &:before {
             position: absolute;
             top: 58px;
             content: '';
@@ -464,24 +464,24 @@ a {
     .features__arrow-link_to_left {
         left: 0;
 
-        &:after {
+        &:before {
             .noRepeatableBg('arrow-left');
             left: 19px;
             }
 
-        &:hover:after {
+        &:hover:before {
             .noRepeatableBg('arrow-left-hover');
             }
         }
     .features__arrow-link_to_right {
         right: 0;
 
-        &:after {
+        &:before {
             .noRepeatableBg('arrow-right');
             right: 19px;
             }
 
-        &:hover:after {
+        &:hover:before {
             .noRepeatableBg('arrow-right-hover');
             }
         }
