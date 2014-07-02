@@ -26,7 +26,6 @@ module.exports = function(map, app) {
     }
 
     map.geoclicker.enabled() && map.geoclicker.disable();
-    map.poi.enabled() && map.poi.disable();
     !map.projectDetector.enabled() && map.projectDetector.enable();
 
     if (!map.controls.zoom) {
