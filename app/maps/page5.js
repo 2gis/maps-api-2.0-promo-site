@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var Commits = require('./commits');
+var gitCommits = require('./commits');
 module.exports = function(map, app) {
 
 	var GitHubIcon = DG.icon({
@@ -9,21 +9,37 @@ module.exports = function(map, app) {
 	    iconAnchor: [16, 16]
 	});
 
-	var cLayers = map.githubCommits = [], commits = [];
+	var commitLayers = map.githubCommits = [], commits = [];
 
 	map.projectDetector.disable();
 	map.setView([52.855864177853995, 3.5156250000000004], 3);
 	map.options.minZoom = 3;
 	map.options.maxZoom = 7;
 
-	function addMarkersToGroup(year, aMarkers){
-		if(Commits[year]){
-			Commits[year].forEach(
+	function addMarkersToGroup(year, markers){
+		if(gitCommits[year]){
+			gitCommits[year].forEach(
 				function(commit){
-					aMarkers.push( DG.marker([commit.latlng.lat,commit.latlng.lng], {icon: GitHubIcon}) );
+					
+					var marker = DG.marker([commit.latlng.lat,commit.latlng.lng], {
+							icon: GitHubIcon
+						});
+
+					marker.addTo(map).bindLabel(commit.location + '<br>' + commit.numCommits + getPlural(commit.numCommits), {
+						offset: new DG.Point(-100,-54)
+					});
+					
+					markers.push(marker);
 				}
 			);
 		}
+	}
+
+	function getPlural(n) { //(Int) -> (String)
+		var lastDigit = n % 10;
+		if ( lastDigit > 5 || lastDigit === 0 ) { return ' коммитов';}
+		 else if ( lastDigit > 1 ) {return ' коммита';}
+		 return ' коммит';
 	}
 
 	function clickSlider() {
@@ -32,7 +48,7 @@ module.exports = function(map, app) {
 
 	function showCommits(year){
 
-		if(!Commits[year] ) { return; }
+		if(!gitCommits[year] ) { return; }
 
 		if(year < 2014) {
 		for(var hy = year; hy<=2014; hy++) {
@@ -41,18 +57,18 @@ module.exports = function(map, app) {
 			}
 		}
 
-		for(var y = year; y>=2010; y--) {
+		for(var y = 2010; y<=year; y++) {
 		if(!commits[y]) {
 			commits[y] = [];
 			addMarkersToGroup(y, commits[y]);
-			cLayers[y] = DG.layerGroup(commits[y]);
-			map.addLayer(cLayers[y]);}
+			commitLayers[y] = DG.layerGroup(commits[y]);
+			map.addLayer(commitLayers[y]);}
 		}
 	}
 
 	function hideCommits(year){
-		 if ( !cLayers[year] ) { return; }
-		 map.removeLayer(cLayers[year]);
+		 if ( !commitLayers[year] ) { return; }
+		 map.removeLayer(commitLayers[year]);
 	}
 
     app.state.on('change:sliderId', clickSlider);
