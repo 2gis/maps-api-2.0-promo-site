@@ -5,16 +5,6 @@
 @import (once) 'fonts.less';
 @import (once) 'marker-cluster.less';
 
-a {
-    color: #fff;
-    text-decoration: underline;
-
-    &:hover,
-    &:visited {
-        color: #fff;
-        text-decoration: none;
-        }
-    }
 
 .page {
     position: relative;
@@ -594,6 +584,13 @@ a {
                 position: relative;
                 z-index: 3;
                 }
+                .features__list-item-section a {
+                    color: #fff;
+
+                    &:hover {
+                        color: #eee;
+                        }
+                    }
                 .features__header {
                     margin: 0 0 13px 0;
                     font: normal 28px/34px 'SuisseIntlCond', Arial, sans-serif;
@@ -871,6 +868,9 @@ a {
                 vertical-align: -1px;
                 }
             }
+        a.pseudocard__find-entrance-link { /* In case of: .features__list-item-section a */
+            color: #e6e6e6;
+            }
 
 
 .entrances-examples {
@@ -929,6 +929,14 @@ a {
                 }
             .entrances-examples__example-link_is-shown_true {
                 background-color: #fdc854;
+                }
+            a.entrances-examples__example-link { /* In case of: .features__list-item-section a */
+                color: #fff;
+                }
+            a.entrances-examples__example-link_is-shown_true:hover,
+            a.entrances-examples__example-link_is-shown_true:focus,
+            a.entrances-examples__example-link_is-shown_true:active,
+            a.entrances-examples__example-link_is-shown_true { /* In case of: .features__list-item-section a */
                 color: #000;
                 }
 
@@ -989,6 +997,15 @@ a {
                 }
             .openness-examples__example-link_is-shown_true {
                 background-color: #fdc854;
+                color: #000;
+                }
+            a.openness-examples__example-link { /* In case of: .features__list-item-section a */
+                color: #fff;
+                }
+            a.openness-examples__example-link_is-shown_true:hover,
+            a.openness-examples__example-link_is-shown_true:focus,
+            a.openness-examples__example-link_is-shown_true:active,
+            a.openness-examples__example-link_is-shown_true { /* In case of: .features__list-item-section a */
                 color: #000;
                 }
 
