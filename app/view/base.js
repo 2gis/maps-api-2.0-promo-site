@@ -29,7 +29,8 @@ module.exports = function(app) {
         },
 
         update: function() {
-            this.$('.map')[([0, 1, '0', '1', this.model.get('max')].indexOf(this.model.get('page')) !== -1 ? 'add' : 'remove') + 'Class']('map_has-overlay_dark');
+            this.$('.map')[([0, 1, '0', '1'].indexOf(this.model.get('page')) !== -1 ? 'add' : 'remove') + 'Class']('map_has-overlay_dark');
+            this.$('.map')[(this.model.get('max') == this.model.get('page') ? 'add' : 'remove') + 'Class']('map_has-overlay_darker');
             this.$('.intro')[(this.model.get('page') != 0 ? 'add' : 'remove') + 'Class']('intro_is-started_true');
             this.$('.start')[(this.model.get('page') != this.model.get('max') ? 'add' : 'remove') + 'Class']('start_is-started_true');
             return this;

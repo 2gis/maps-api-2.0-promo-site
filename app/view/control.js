@@ -1,4 +1,5 @@
-var Backbone = require('backbone');
+var Backbone = require('backbone'),
+    _ = require('underscore');
 Backbone.$ = require('jquery');
 
 module.exports = function (app) {
@@ -20,7 +21,7 @@ module.exports = function (app) {
         initialize: function () {
             this.model.on('change:page', this.update, this);
             this.model.on('change:sliderEl', this._updateSlider, this);
-            window.onkeyup = this.keyUp.bind(this);
+            window.onkeyup = _.bind(this.keyUp, this);
 
             this.render().toggle();
         },
@@ -131,7 +132,7 @@ module.exports = function (app) {
 
             if (!this._interval) {
                 e && this._runSlider();
-                this._interval = window.setInterval(this._runSlider.bind(this), 5000);
+                this._interval = window.setInterval(_.bind(this._runSlider, this), 5000);
                 $el.addClass(type + playClass);
             } else {
                 $el.removeClass(type + playClass);
@@ -147,7 +148,7 @@ module.exports = function (app) {
         _resetSliderPlay: function () {
             if (this._interval) {
                 this._stopSlider();
-                this._interval = window.setInterval(this._runSlider.bind(this), 5000);
+                this._interval = window.setInterval(_.bind(this._runSlider, this), 5000);
             }
         },
 
